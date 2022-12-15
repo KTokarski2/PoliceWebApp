@@ -1,0 +1,38 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+  <h2>Nowy przydział do sprawy</h2>
+  <form class="form" novalidate onsubmit="return validateForm(event);">
+    <label for="policeOfficer">Funkcjonariusz: <span class="symbol-required">*</span></label>
+    <select name="policeOfficer" id="policeOfficer" required>
+      <option>-- Wybierz funkcjonariusza --</option>
+      <option value="1">Sławomir Borewicz</option>
+      <option value="2">Adam Małysz</option>
+    </select>
+    <span id="errorPoliceOfficer" class="errors-text"></span>
+    <label for="case">Sprawa: <span class="symbol-required">*</span></label>
+    <select name="case" id="case" required>
+      <option>-- Wybierz sprawę --</option>
+      <option value="1">Pobicie</option>
+      <option value="2">Kradzież</option>
+    </select>
+    <span id="errorCase" class="errors-text"></span>
+    <label for="startingDate">Data rozpoczęcia: <span class="symbol-required">*</span></label>
+    <input type="date" name="startingDate" id="startingDate" required>
+    <span id="errorStartingDate" class="errors-text"></span>
+    <label for="endingDate">Data zakończenia: </label>
+    <input type="date" name="endingDate" id="endingDate">
+    <span id="errorEndingDate" class="errors-text"></span>
+    <label for="actionTaken">Planowane działania: <span class="symbol-required">*</span></label>
+    <textarea id="actionTaken" name="actionTaken" rows="5" cols="50" required></textarea>
+    <span id="errorActionTaken" class="errors-text"></span>
+    <div class="form-buttons">
+      <p id="errorsSummary" class="errors-text"></p>
+      <input class="form-button-submit" type="submit" value="Dodaj"/>
+      <a class="form-button-cancel" href="list.ejs">Anuluj</a>
+    </div>
+  </form>
+
+</main>
+
+<%- include('../../fragments/footer.ejs') %>

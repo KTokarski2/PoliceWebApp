@@ -1,0 +1,70 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+  <h2>Lista udziału w sprawach</h2>
+  <table class="table-list">
+    <thead>
+    <tr>
+      <th>Policjant</th>
+      <th>Sprawa</th>
+      <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Adam Małysz</td>
+      <td>Pobicie</td>
+      <td>
+        <ul class="list-actions">
+          <li>
+            <a class="list-actions-button-details" href="PoliceOfficer/details.ejs"><span class="material-symbols-outlined">info</span></a>
+          </li>
+          <li>
+            <a class="list-actions-button-edit" href="form.ejs"><span class="material-symbols-outlined">edit_square</span></a>
+          </li>
+          <li>
+            <a class="list-actions-button-delete" href=""><span class="material-symbols-outlined">delete</span></a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Sławomir Borewicz</td>
+      <td>Zabójstwo</td>
+      <td>
+        <ul class="list-actions">
+          <li>
+            <a class="list-actions-button-details" href="details.ejs"><span class="material-symbols-outlined">info</span></a>
+          </li>
+          <li>
+            <a class="list-actions-button-edit" href="form.ejs"><span class="material-symbols-outlined">edit_square</span></a>
+          </li>
+          <li>
+            <a class="list-actions-button-delete" href=""><span class="material-symbols-outlined">delete</span></a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Kamil Stoch</td>
+      <td>Kradzież</td>
+      <td>
+        <ul class="list-actions">
+          <li>
+            <a class="list-actions-button-details" href="details.ejs"><span class="material-symbols-outlined">info</span></a>
+          </li>
+          <li>
+            <a class="list-actions-button-edit" href="form.ejs"><span class="material-symbols-outlined">edit_square</span></a>
+          </li>
+          <li>
+            <a class="list-actions-button-delete" href=""><span class="material-symbols-outlined">delete</span></a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <p><a class="button-add" href="form.ejs">Przydziel policjanta do sprawy</a></p>
+</main>
+
+<%- include('../../fragments/footer.ejs') %>

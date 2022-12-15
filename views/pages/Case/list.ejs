@@ -1,0 +1,70 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+  <h2>Lista prowadzonych spraw</h2>
+  <table class="table-list">
+    <thead>
+    <tr>
+      <th>Nazwa</th>
+      <th>Data rozpoczęcia</th>
+      <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Zabójstwo</td>
+      <td>22.09.2022</td>
+      <td>
+        <ul class="list-actions">
+          <li>
+            <a class="list-actions-button-details" href="details.ejs"><span class="material-symbols-outlined">info</span></a>
+          </li>
+          <li>
+            <a class="list-actions-button-edit" href="form.ejs"><span class="material-symbols-outlined">edit_square</span></a>
+          </li>
+          <li>
+            <a class="list-actions-button-delete" href=""><span class="material-symbols-outlined">delete</span></a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Pobicie</td>
+      <td>13.09.2022</td>
+      <td>
+        <ul class="list-actions">
+          <li>
+            <a class="list-actions-button-details" href="details.ejs"><span class="material-symbols-outlined">info</span></a>
+          </li>
+          <li>
+            <a class="list-actions-button-edit" href="form.ejs"><span class="material-symbols-outlined">edit_square</span></a>
+          </li>
+          <li>
+            <a class="list-actions-button-delete" href=""><span class="material-symbols-outlined">delete</span></a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Kradzież</td>
+      <td>01.09.2022</td>
+      <td>
+        <ul class="list-actions">
+          <li>
+            <a class="list-actions-button-details" href="details.ejs"><span class="material-symbols-outlined">info</span></a>
+          </li>
+          <li>
+            <a class="list-actions-button-edit" href="form.ejs"><span class="material-symbols-outlined">edit_square</span></a>
+          </li>
+          <li>
+            <a class="list-actions-button-delete" href=""><span class="material-symbols-outlined">delete</span></a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <p><a class="button-add" href="form.ejs">Dodaj nową sprawę</a></p>
+</main>
+
+<%- include('../../fragments/footer.ejs') %>

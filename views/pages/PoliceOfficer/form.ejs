@@ -1,0 +1,49 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+    <h2>Nowy pracownik</h2>
+    <form class="form" novalidate onsubmit="return validateForm(event);">
+        <label for="firstName">Imię: <span class="symbol-required">*</span></label>
+        <input type="text" name="firstName" id="firstName" placeholder="2-50 znaków" required>
+        <span id="errorFirstName" class="errors-text"></span>
+        <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
+        <input type="text" name="lastName" id="lastName" placeholder="2-50 znaków" required>
+        <span id="errorLastName" class="errors-text"></span>
+        <label for="rank">Stopień: <span class="symbol-required">*</span></label>
+        <select name="rank" id="rank" required>
+            <option>-- Wybierz stopień --</option>
+            <option value="1">Posterunkowy</option>
+            <option value="2">Starszy posterunkowy</option>
+            <option value="3">Sierżant</option>
+            <option value="4">Starszy sierżant</option>
+            <option value="5">Sierżant sztabowy</option>
+            <option value="6">Młodszy aspirant</option>
+            <option value="7">Aspirant</option>
+            <option value="8">Starszy aspirant</option>
+            <option value="9">Aspirant sztabowy</option>
+            <option value="10">Podkomisarz</option>
+            <option value="11">Komisarz</option>
+            <option value="12">Nadkomisarz</option>
+            <option value="13">Podinspektor</option>
+            <option value="14">Młodszy inspektor</option>
+            <option value="15">Inspektor</option>
+            <option value="16">Nadinspektor</option>
+            <option value="17">Generalny inspektor</option>
+        </select>
+        <span id="errorRank" class="errors-text"></span>
+        <label for="department">Wydział: <span class="symbol-required">*</span></label>
+        <input type="text" name="department" id="department" placeholder="2-50 znaków" required>
+        <span id="errorDepartment" class="errors-text"></span>
+        <label for="salary">Pensja: <span class="symbol-required">*</span></label>
+        <input type="number" name="salary" id="salary" step="0.01" placeholder="np. 3000.00 zł" required>
+        <span id="errorSalary" class="errors-text"></span>
+        <div class="form-buttons">
+            <p id="errorsSummary" class="errors-text"></p>
+            <input class="form-button-submit" type="submit" value="Dodaj"/>
+            <a class="form-button-cancel" href="list.ejs">Anuluj</a>
+        </div>
+    </form>
+
+</main>
+
+<%- include('../../fragments/footer.ejs') %>

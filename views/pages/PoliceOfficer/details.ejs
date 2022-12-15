@@ -1,0 +1,83 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+  <h2>Szczegóły funkcjonariusza</h2>
+  <form class="form">
+    <label for="firstName">Imię: <span class="symbol-required">*</span></label>
+    <input type="text" name="firstName" value="Sławomir" id="firstName" disabled>
+    <span id="errorFirstName"></span>
+    <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
+    <input type="text" name="lastName" value="Borewicz" id="lastName" disabled>
+    <span id="errorLastName"></span>
+    <label for="rank">Stopień: <span class="symbol-required">*</span></label>
+    <select name="rank" id="rank" disabled>
+      <option>-- Wybierz stopień --</option>
+      <option value="1">Posterunkowy</option>
+      <option value="2">Starszy posterunkowy</option>
+      <option value="2">Sierżant</option>
+      <option value="2">Starszy sierżant</option>
+      <option value="2">Sierżant sztabowy</option>
+      <option value="2">Młodszy aspirant</option>
+      <option value="2">Aspirant</option>
+      <option value="2">Starszy aspirant</option>
+      <option value="2">Aspirant sztabowy</option>
+      <option value="2">Podkomisarz</option>
+      <option value="2">Komisarz</option>
+      <option value="2">Nadkomisarz</option>
+      <option value="2">Podinspektor</option>
+      <option value="2">Młodszy inspektor</option>
+      <option value="2" selected>Inspektor</option>
+      <option value="2">Nadinspektor</option>
+      <option value="2">Generalny inspektor</option>
+    </select>
+    <span id="errorRank"></span>
+    <label for="department">Wydział: <span class="symbol-required">*</span></label>
+    <input type="text" name="department" value="Kryminalny" id="department" disabled>
+    <span id="errorDepartment"></span>
+    <label for="salary">Pensja: <span class="symbol-required">*</span></label>
+    <input type="number" name="salary" value="6000.00" id="salary" disabled>
+    <span id="errorSalary"></span>
+    <div>
+      <p id="errorsSummary"></p>
+      <a class="list-actions-button-edit" href="form-edit.ejs">Edytuj</a>
+    </div>
+  </form>
+  <h2>Szczegóły uczestnictwa w sprawach</h2>
+  <table class="table-list">
+    <thead>
+    <tr>
+      <th>Sprawa</th>
+      <th>Data rozpoczęcia</th>
+      <th>Data zakończenia</th>
+      <th>Podjęte działania</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Pobicie</td>
+      <td>13.09.2022</td>
+      <td>30.09.2022</td>
+      <td><ul class="list-actions">
+        <a class="list-actions-button-details" href="../Participation/detalis.ejs"><span class="material-symbols-outlined">info</span></a>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Kradzież</td>
+      <td>13.09.2022</td>
+      <td>15.09.2022</td>
+      <td><ul class="list-actions">
+        <a class="list-actions-button-details" href="../Participation/detalis.ejs"><span class="material-symbols-outlined">info</span></a>
+      </ul>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div>
+    <p id="backToList"></p>
+    <a class="form-button-submit" href="/PoliceOfficer">Powrót</a>
+  </div>
+
+</main>
+
+<%- include('../../fragments/footer.ejs') %>

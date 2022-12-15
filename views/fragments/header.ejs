@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/images/swppp-logo.png" type="image/icon type">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>SWPPP</title>
+</head>
+<body>
+
+<header>
+    <h1>System wspomagający pracę posterunku policji</h1>
+    <img src="/images/swppp-logo.png" alt="SWPPP - system logo" width="130" height="100">
+</header>
+
+<nav>
+    <ul>
+        <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Strona główna</a></li>
+        <li><a href="/PoliceOfficer" class="<%= navLocation == 'policeOfficer' ? 'active' : ''%>">Policjanci</a></li>
+        <li><a href="/Case" class="<%= navLocation == 'case' ? 'active' : ''%>">Sprawy</a></li>
+        <li><a href="/Participation" class="<%= navLocation == 'participation' ? 'active' : ''%>">Uczestnictwo w sprawach</a></li>
+    </ul>
+</nav>
