@@ -25,7 +25,19 @@ exports.showAddPoliceOfficerForm = (req, res, next) => {
 };
 
 exports.showPoliceOfficerDetails = (req, res, next) => {
+
     //res.render('pages/PoliceOfficer/details', {navLocation: 'policeOfficer'});
+    const policeOfficerId = req.params.policeOfficerId;
+    PoliceOfficerRepository.getPoliceOfficerById(policeOfficerId)
+        .then(policeOfficer => {
+            res.render('pages/PoliceOfficer/form', {
+                policeOfficer: policeOfficer,
+                formMode: 'showDetails',
+                pageTitle: 'Szczegóły policjanta',
+                formAction: '',
+                navLocation: 'policeOfficer'
+            });
+        });
 
 };
 
