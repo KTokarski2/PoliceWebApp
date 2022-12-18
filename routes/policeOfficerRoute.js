@@ -6,6 +6,9 @@ router.get('/', policeOfficerController.showPoliceOfficerList);
 router.get('/add', policeOfficerController.showAddPoliceOfficerForm);
 router.get('/edit/:policeOfficerId', policeOfficerController.showEditPoliceOfficerForm);
 router.get('/details/:policeOfficerId', policeOfficerController.showPoliceOfficerDetails);
+router.post('/add', policeOfficerController.addPoliceOfficer);
+router.post('edit', policeOfficerController.updatePoliceOfficer);
+router.get('/delete/:policeOfficerId', policeOfficerController.deletePoliceOfficer);
 
 
 module.exports = router;

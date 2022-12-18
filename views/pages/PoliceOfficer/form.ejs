@@ -3,17 +3,17 @@
 <main>
     <script type="application/javascript" src="/public/js/validationPoliceOfficerForm.js"></script>
     <h2><%= pageTitle %></h2>
-    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm(event);">
+    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
         <input type="hidden" name="_id" value="<% policeOfficer._id%>">
         <label for="firstName">Imię: <span class="symbol-required">*</span></label>
-        <input type="text" name="firstName" id="firstName" placeholder="2-50 znaków" value="<%= policeOfficer.firstName %>" <% (formMode == 'showDetails') ? 'disabled' : ''%>/>
+        <input type="text" name="firstName" id="firstName" placeholder="2-50 znaków" value="<%= policeOfficer.firstName %>" <% (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorFirstName" class="errors-text"></span>
         <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
-        <input type="text" name="lastName" id="lastName" placeholder="2-50 znaków" required>
+        <input type="text" name="lastName" id="lastName" placeholder="2-50 znaków" value="<%= policeOfficer.lastName%>" <% (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorLastName" class="errors-text"></span>
         <label for="rank">Stopień: <span class="symbol-required">*</span></label>
-        <select name="rank" id="rank" required>
-            <option>-- Wybierz stopień --</option>
+        <select name="rank" id="rank" >
+            <option><%= policeOfficer.rank %></option>
             <option value="1">Posterunkowy</option>
             <option value="2">Starszy posterunkowy</option>
             <option value="3">Sierżant</option>
@@ -34,17 +34,48 @@
         </select>
         <span id="errorRank" class="errors-text"></span>
         <label for="department">Wydział: <span class="symbol-required">*</span></label>
-        <input type="text" name="department" id="department" placeholder="2-50 znaków" required>
+        <input type="text" name="department" id="department" placeholder="2-50 znaków" value="<%= policeOfficer.department%>" <% (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorDepartment" class="errors-text"></span>
         <label for="salary">Pensja: <span class="symbol-required">*</span></label>
-        <input type="number" name="salary" id="salary" step="0.01" placeholder="np. 3000.00 zł" required>
+        <input type="number" name="salary" id="salary" step="any" placeholder="np. 3000.00 zł" value="<% policeOfficer.salary%>" <% (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorSalary" class="errors-text"></span>
         <div class="form-buttons">
             <p id="errorsSummary" class="errors-text"></p>
-            <input class="form-button-submit" type="submit" value="Dodaj"/>
-            <a class="form-button-cancel" href="list.ejs">Anuluj</a>
+            <% if (formMode != 'showDetails') { %>
+            <input class="form-button-submit" type="submit" value="<%= btnLabel%>"/>
+            <a class="form-button-cancel" href="/PoliceOfficer">Anuluj</a>
+            <% } else { %>
+            <input class="form-button-submit" type="submit" value="Edytuj">
+            <a class="form-button-cancel" href="/PoliceOfficer">Powrót</a>
+            <% } %>
         </div>
     </form>
+    <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+    <h2>Szczegóły uczestnictwa w sprawach</h2>
+    <table class="table-list">
+        <thead>
+        <tr>
+            <th>Sprawa</th>
+            <th>Data rozpoczęcia</th>
+            <th>Data zakończenia</th>
+            <th>Podjęte działania</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (let participation of policeOfficer.participations) { %>
+        <tr>
+            <td><%= participation.Case.name%></td>
+            <td><%= participation.startingDate.toISOString().split('T')[0] %></td>
+            <td><%= participation.endingDate ? participation.endingDate.toISOString().split('T')[0] : '' %></td>
+            <td><ul class="list-actions">
+                    <a class="list-actions-button-details" href="/Case/details/<%= participation.Case._id %>"><span class="material-symbols-outlined">info</span></a>
+                </ul>
+            </td>
+        </tr>
+        <% } %>
+        </tbody>
+    </table>
+    <% } %>
 
 </main>
 

@@ -56,3 +56,28 @@ exports.showEditPoliceOfficerForm = (req, res, next) => {
             });
         });
 };
+
+exports.addPoliceOfficer = (req, res, next) => {
+    const policeOfficerData = { ...req.body };
+    PoliceOfficerRepository.createPoliceOfficer(policeOfficerData)
+        .then( result => {
+            res.redirect('/PoliceOfficer');
+        });
+};
+
+exports.updatePoliceOfficer = (req, res, next) => {
+    const policeOfficerId = req.body._id;
+    const policeOfficerData = { ...req.body };
+    PoliceOfficerRepository.updatePoliceOfficer(policeOfficerId, policeOfficerData)
+        .then( result => {
+            res.redirect('/PoliceOfficer');
+        });
+};
+
+exports.deletePoliceOfficer = (req, res, next) => {
+    const policeOfficerId = req.params.policeOfficerId;
+    PoliceOfficerRepository.deletePoliceOfficer(policeOfficerId)
+        .then( () => {
+            res.redirect('/PoliceOfficer');
+        });
+};
