@@ -36,6 +36,8 @@ exports.updatePoliceOfficer = (PoliceOfficer_id, PoliceOfficerData) => {
     const rank = PoliceOfficerData.rank;
     const department = PoliceOfficerData.department;
     const salary = PoliceOfficerData.salary;
+    console.log(PoliceOfficer_id);
+    console.log(PoliceOfficerData);
     return PoliceOfficer.update(PoliceOfficerData, {where: { _id: PoliceOfficer_id }});
 };
 

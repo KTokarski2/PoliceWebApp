@@ -3,16 +3,16 @@
 <main>
     <script type="application/javascript" src="/public/js/validationPoliceOfficerForm.js"></script>
     <h2><%= pageTitle %></h2>
-    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
-        <input type="hidden" name="_id" value="<% policeOfficer._id%>">
+    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+        <input type="hidden" name="_id" value="<%= policeOfficer._id %>">
         <label for="firstName">Imię: <span class="symbol-required">*</span></label>
-        <input type="text" name="firstName" id="firstName" placeholder="2-50 znaków" value="<%= policeOfficer.firstName %>" <% (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <input type="text" name="firstName" id="firstName" placeholder="2-50 znaków" value="<%= policeOfficer.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorFirstName" class="errors-text"></span>
         <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
-        <input type="text" name="lastName" id="lastName" placeholder="2-50 znaków" value="<%= policeOfficer.lastName%>" <% (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <input type="text" name="lastName" id="lastName" placeholder="2-50 znaków" value="<%= policeOfficer.lastName%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorLastName" class="errors-text"></span>
         <label for="rank">Stopień: <span class="symbol-required">*</span></label>
-        <select name="rank" id="rank" >
+        <select name="rank" id="rank" <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
             <option><%= policeOfficer.rank %></option>
             <option value="1">Posterunkowy</option>
             <option value="2">Starszy posterunkowy</option>
@@ -34,10 +34,10 @@
         </select>
         <span id="errorRank" class="errors-text"></span>
         <label for="department">Wydział: <span class="symbol-required">*</span></label>
-        <input type="text" name="department" id="department" placeholder="2-50 znaków" value="<%= policeOfficer.department%>" <% (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <input type="text" name="department" id="department" placeholder="2-50 znaków" value="<%= policeOfficer.department%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorDepartment" class="errors-text"></span>
         <label for="salary">Pensja: <span class="symbol-required">*</span></label>
-        <input type="number" name="salary" id="salary" step="any" placeholder="np. 3000.00 zł" value="<% policeOfficer.salary%>" <% (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <input type="number" name="salary" id="salary" step="any" placeholder="np. 3000.00 zł" value="<%= policeOfficer.salary%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorSalary" class="errors-text"></span>
         <div class="form-buttons">
             <p id="errorsSummary" class="errors-text"></p>
@@ -45,7 +45,7 @@
             <input class="form-button-submit" type="submit" value="<%= btnLabel%>"/>
             <a class="form-button-cancel" href="/PoliceOfficer">Anuluj</a>
             <% } else { %>
-            <input class="form-button-submit" type="submit" value="Edytuj">
+            <a class="form-button-submit" href="/PoliceOfficer/edit/<%= policeOfficer._id%>">Edytuj</a>
             <a class="form-button-cancel" href="/PoliceOfficer">Powrót</a>
             <% } %>
         </div>

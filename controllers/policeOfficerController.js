@@ -1,4 +1,5 @@
 const PoliceOfficerRepository = require('../repository/sequelize/PoliceOfficerRepository');
+const {INTEGER} = require("sequelize");
 
 exports.showPoliceOfficerList = (req, res, next) => {
     //res.render('pages/PoliceOfficer/list', {navLocation: 'policeOfficer'});
@@ -43,9 +44,10 @@ exports.showPoliceOfficerDetails = (req, res, next) => {
 
 exports.showEditPoliceOfficerForm = (req, res, next) => {
     //res.render('pages/PoliceOfficer/form', {navLocation: 'policeOfficer'});
-    const policeOfficerId = req.params.policeOfficerId;
+    const policeOfficerId = parseInt(req.params.policeOfficerId);
     PoliceOfficerRepository.getPoliceOfficerById(policeOfficerId)
         .then(policeOfficer => {
+            console.log(policeOfficer._id)
             res.render('pages/PoliceOfficer/form', {
                 policeOfficer: policeOfficer,
                 formMode: 'edit',
@@ -66,7 +68,7 @@ exports.addPoliceOfficer = (req, res, next) => {
 };
 
 exports.updatePoliceOfficer = (req, res, next) => {
-    const policeOfficerId = req.body._id;
+    const policeOfficerId = parseInt(req.body._id);
     const policeOfficerData = { ...req.body };
     PoliceOfficerRepository.updatePoliceOfficer(policeOfficerId, policeOfficerData)
         .then( result => {
@@ -75,7 +77,7 @@ exports.updatePoliceOfficer = (req, res, next) => {
 };
 
 exports.deletePoliceOfficer = (req, res, next) => {
-    const policeOfficerId = req.params.policeOfficerId;
+    const policeOfficerId = parseInt(req.params.policeOfficerId);
     PoliceOfficerRepository.deletePoliceOfficer(policeOfficerId)
         .then( () => {
             res.redirect('/PoliceOfficer');
