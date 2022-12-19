@@ -11,9 +11,10 @@
     </tr>
     </thead>
     <tbody>
+    <% for (let c of cases) { %>
     <tr>
-      <td>Zabójstwo</td>
-      <td>22.09.2022</td>
+      <td><%= c.name %></td>
+      <td><%= c.startingDate.toISOString().split('T')[0] %></td>
       <td>
         <ul class="list-actions">
           <li>
@@ -28,6 +29,8 @@
         </ul>
       </td>
     </tr>
+    <% } %>
+    </tbody>
   </table>
   <p><a class="button-add" href="form.ejs">Dodaj nową sprawę</a></p>
 </main>

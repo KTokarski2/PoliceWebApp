@@ -3,10 +3,10 @@ const CaseRepository = require('../repository/sequelize/CaseRepository');
 exports.showCaseList = (req, res, next) => {
     CaseRepository.getCases()
         .then(cases => {
-            res.render('pages/Case/list'), {
+            res.render('pages/Case/list', {
                 cases: cases,
                 navLocation: 'case'
-            };
+            });
         });
 };
 
