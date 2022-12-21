@@ -17,7 +17,7 @@ exports.showAddPoliceOfficerForm = (req, res, next) => {
     //res.render('pages/PoliceOfficer/form', {navLocation: 'policeOfficer'});
     res.render('pages/PoliceOfficer/form', {
         policeOfficer: {},
-        pageTitle: 'Nowy Policjant',
+        pageTitle: 'Nowy policjant',
         formMode: 'createNew',
         btnLabel: 'Dodaj policjanta',
         formAction: '/PoliceOfficer/add',
@@ -47,7 +47,6 @@ exports.showEditPoliceOfficerForm = (req, res, next) => {
     const policeOfficerId = parseInt(req.params.policeOfficerId);
     PoliceOfficerRepository.getPoliceOfficerById(policeOfficerId)
         .then(policeOfficer => {
-            console.log(policeOfficer._id)
             res.render('pages/PoliceOfficer/form', {
                 policeOfficer: policeOfficer,
                 formMode: 'edit',

@@ -11,9 +11,68 @@ exports.showCaseList = (req, res, next) => {
 };
 
 exports.showAddCaseForm = (req, res, next) => {
-    res.render('pages/Case/form', {navLocation: 'case'});
-}
+    //res.render('pages/Case/form', {navLocation: 'case'});
+    res.render('pages/Case/form', {
+        Case: {},
+        pageTitle: 'Nowa sprawa',
+        formMode: 'createNew',
+        btnLabel: 'Dodaj sprawę',
+        formAction: '/Case/add',
+        navLocation: 'case'
+    });
+};
 
 exports.showCaseDetails = (req, res, next) => {
-    res.render('pages/Case/details', {navLocation: 'case'})
-}
+    const caseId = req.params.caseId;
+    CaseRepository.getCaseById(caseId)
+        .then(Case => {
+            res.render('pages/Case/form', {
+                Case: Case,
+                formMode: 'showDetails',
+                pageTitle: 'Szczegóły sprawy',
+                formAction: '',
+                navLocation: 'case'
+            });
+        });
+};
+
+exports.showEditCaseForm = (req, res, next) => {
+    const caseId = req.params.caseId;
+    CaseRepository.getCaseById(caseId)
+        .then(Case => {
+            res.render('pages/Case/form', {
+                Case: Case,
+                formMode: 'edit',
+                pageTitle: 'Edycja sprawy',
+                btnLabel: 'Edytuj sprawę',
+                formAction: '/Case/edit',
+                navLocation: 'case'
+            });
+        });
+};
+
+exports.addCase = (req, res, next) => {
+    const caseData = { ...req.body };
+    CaseRepository.createCase(caseData)
+        .then(result => {
+            res.redirect('/Case');
+        });
+};
+
+exports.updateCase = (req, res, next) => {
+    const caseId = req.body._id;
+    const caseData = { ...req.body };
+    CaseRepository.updateCase(caseId, caseData)
+        .then( result => {
+            res.redirect('/Case');
+        });
+
+};
+
+exports.deleteCase = (req, res, next) => {
+    const caseId = req.params.caseId;
+    CaseRepository.deleteCase(caseId)
+        .then( () => {
+            res.redirect('/Case');
+        });
+};

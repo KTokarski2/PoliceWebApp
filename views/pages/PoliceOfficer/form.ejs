@@ -1,7 +1,8 @@
 <%- include('../../fragments/header.ejs') %>
 
 <main>
-    <script type="application/javascript" src="/public/js/validationPoliceOfficerForm.js"></script>
+    <script type="application/javascript" src="/js/validationPoliceOfficerForm.js"></script>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
     <h2><%= pageTitle %></h2>
     <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
         <input type="hidden" name="_id" value="<%= policeOfficer._id %>">
@@ -12,25 +13,26 @@
         <input type="text" name="lastName" id="lastName" placeholder="2-50 znaków" value="<%= policeOfficer.lastName%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorLastName" class="errors-text"></span>
         <label for="rank">Stopień: <span class="symbol-required">*</span></label>
+        <% //var options = [ "Posterunkowy", "Starszy posterunkowy", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" ]; %>
         <select name="rank" id="rank" <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
             <option><%= policeOfficer.rank %></option>
-            <option value="1">Posterunkowy</option>
-            <option value="2">Starszy posterunkowy</option>
-            <option value="3">Sierżant</option>
-            <option value="4">Starszy sierżant</option>
-            <option value="5">Sierżant sztabowy</option>
-            <option value="6">Młodszy aspirant</option>
-            <option value="7">Aspirant</option>
-            <option value="8">Starszy aspirant</option>
-            <option value="9">Aspirant sztabowy</option>
-            <option value="10">Podkomisarz</option>
-            <option value="11">Komisarz</option>
-            <option value="12">Nadkomisarz</option>
-            <option value="13">Podinspektor</option>
-            <option value="14">Młodszy inspektor</option>
-            <option value="15">Inspektor</option>
-            <option value="16">Nadinspektor</option>
-            <option value="17">Generalny inspektor</option>
+            <option value="Posterunkowy">Posterunkowy</option>
+            <option value="Starszy posterunkowy">Starszy posterunkowy</option>
+            <option value="Sierżant">Sierżant</option>
+            <option value="Starszy sierżant">Starszy sierżant</option>
+            <option value="Sierżant sztabowy">Sierżant sztabowy</option>
+            <option value="Młodszy aspirant">Młodszy aspirant</option>
+            <option value="Aspirant">Aspirant</option>
+            <option value="Starszy aspirant">Starszy aspirant</option>
+            <option value="Aspirant sztabowy">Aspirant sztabowy</option>
+            <option value="Podkomisarz">Podkomisarz</option>
+            <option value="Komisarz">Komisarz</option>
+            <option value="Nadkomisarz">Nadkomisarz</option>
+            <option value="Podinspektor">Podinspektor</option>
+            <option value="Młodszy inspektor">Młodszy inspektor</option>
+            <option value="Inspektor">Inspektor</option>
+            <option value="Nadinspektor">Nadinspektor</option>
+            <option value="Generalny inspektor">Generalny inspektor</option>
         </select>
         <span id="errorRank" class="errors-text"></span>
         <label for="department">Wydział: <span class="symbol-required">*</span></label>
@@ -39,16 +41,20 @@
         <label for="salary">Pensja: <span class="symbol-required">*</span></label>
         <input type="number" name="salary" id="salary" step="any" placeholder="np. 3000.00 zł" value="<%= policeOfficer.salary%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorSalary" class="errors-text"></span>
-        <div class="form-buttons">
-            <p id="errorsSummary" class="errors-text"></p>
             <% if (formMode != 'showDetails') { %>
-            <input class="form-button-submit" type="submit" value="<%= btnLabel%>"/>
-            <a class="form-button-cancel" href="/PoliceOfficer">Anuluj</a>
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
+                <a class="form-button-cancel" href="/PoliceOfficer">Anuluj</a>
+            </div>
             <% } else { %>
-            <a class="form-button-submit" href="/PoliceOfficer/edit/<%= policeOfficer._id%>">Edytuj</a>
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+            <a class="details-button-edit" href="/PoliceOfficer/edit/<%= policeOfficer._id%>">Edytuj</a>
             <a class="form-button-cancel" href="/PoliceOfficer">Powrót</a>
+            </div>
             <% } %>
-        </div>
+
     </form>
     <% if (formMode == 'showDetails' || formMode == 'edit') { %>
     <h2>Szczegóły uczestnictwa w sprawach</h2>
@@ -68,7 +74,7 @@
             <td><%= participation.startingDate.toISOString().split('T')[0] %></td>
             <td><%= participation.endingDate ? participation.endingDate.toISOString().split('T')[0] : '' %></td>
             <td><ul class="list-actions">
-                    <a class="list-actions-button-details" href="/Case/details/<%= participation.Case._id %>"><span class="material-symbols-outlined">info</span></a>
+                    <a class="list-actions-button-details" href="/Case/details/<%= participation._id %>"><span class="material-symbols-outlined">info</span></a>
                 </ul>
             </td>
         </tr>
