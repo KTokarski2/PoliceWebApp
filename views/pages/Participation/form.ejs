@@ -1,36 +1,51 @@
 <%- include('../../fragments/header.ejs') %>
 
 <main>
-  <h2>Nowy przydział do sprawy</h2>
-  <form class="form" novalidate onsubmit="return validateForm(event);">
+  <script type="application/javascript" src="/js/validationParticipationForm.js"></script>
+  <script type="application/javascript" src="/js/validationCommon.js"></script>
+  <h2><%= pageTitle %></h2>
+  <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm(event);">
+    <input type="hidden" name="_id" value="<%= participation._id%>">
     <label for="policeOfficer">Funkcjonariusz: <span class="symbol-required">*</span></label>
-    <select name="policeOfficer" id="policeOfficer" required>
-      <option>-- Wybierz funkcjonariusza --</option>
-      <option value="1">Sławomir Borewicz</option>
-      <option value="2">Adam Małysz</option>
+    <select name="policeOfficer" id="policeOfficer" required <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
+      <option value="" selected>-- Wybierz funkcjonariusza --</option>
+      <% for(let i=0; i < allPoliceOfficers.length; i++) { let policeOfficer = allPoliceOfficers[i]; %>
+      <option value="<%= policeOfficer._id %>" label="<%= policeOfficer.firstName + ' ' + policeOfficer.lastName %>"
+          <%= (participation._id && policeOfficer._id.toString() == participation.PoliceOfficer._id.toString()) ? 'selected' : ''%>></option>
+      <% } %>
     </select>
     <span id="errorPoliceOfficer" class="errors-text"></span>
     <label for="case">Sprawa: <span class="symbol-required">*</span></label>
-    <select name="case" id="case" required>
-      <option>-- Wybierz sprawę --</option>
-      <option value="1">Pobicie</option>
-      <option value="2">Kradzież</option>
+    <select name="case" id="case" required <%= (formMode == 'showDetails') ? 'disabled' : '' %> >
+      <option value="" selected>-- Wybierz sprawę --</option>
+      <% for (let i=0; i < allCases.length; i++) { let Case = allCases[i]; %>
+      <option value="<%= Case._id %>" label="<%= Case.name %>"
+          <%= (participation._id && Case._id.toString() == participation.Case._id.toString()) ? 'selected' : ''%>></option>
+      <% } %>
     </select>
     <span id="errorCase" class="errors-text"></span>
     <label for="startingDate">Data rozpoczęcia: <span class="symbol-required">*</span></label>
-    <input type="date" name="startingDate" id="startingDate" required>
+    <input type="date" name="startingDate" id="startingDate" value="<%= participation.startingDate %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
     <span id="errorStartingDate" class="errors-text"></span>
     <label for="endingDate">Data zakończenia: </label>
-    <input type="date" name="endingDate" id="endingDate">
+    <input type="date" name="endingDate" id="endingDate" value="<%= participation.endingDate %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
     <span id="errorEndingDate" class="errors-text"></span>
     <label for="actionTaken">Planowane działania: <span class="symbol-required">*</span></label>
-    <textarea id="actionTaken" name="actionTaken" rows="5" cols="50" required></textarea>
+    <textarea id="actionTaken" name="actionTaken" placeholder="0 - 100 znaków" <%= (formMode == 'showDetails') ? 'disabled' : '' %>><%= participation.description%></textarea>
     <span id="errorActionTaken" class="errors-text"></span>
+    <% if (formMode != 'showDetails') { %>
     <div class="form-buttons">
       <p id="errorsSummary" class="errors-text"></p>
-      <input class="form-button-submit" type="submit" value="Dodaj"/>
+      <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
       <a class="form-button-cancel" href="list.ejs">Anuluj</a>
     </div>
+    <% } else {%>
+    <div class="form-buttons">
+      <p id="errorsSummary" class="errors-text"></p>
+      <a class="details-button-edit" href="/Participation/edit/<%= participation._id %>">Edytuj</a>
+      <a class="form-button-cancel" href="/Participation">Powrót</a>
+    </div>
+    <% } %>
   </form>
 
 </main>
