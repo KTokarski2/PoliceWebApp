@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
+
+
 var indexRouter = require('./routes/index');
 const policeOfficerRouter = require('./routes/policeOfficerRoute');
 const caseRouter = require('./routes/caseRoute');
@@ -14,12 +17,20 @@ const CaseApiRouter = require('./routes/api/CaseApiRoute');
 const ParticipationApiRouter = require('./routes/api/ParticipationApiRoute');
 
 
+
 sequelizeInit()
     .catch(err => {
       console.log(err);
     });
 
 var app = express();
+
+const fmt = require('./public/js/utils/dateFormatting');
+
+app.use((req, res, next) => {
+    res.locals.fmt = fmt;
+    next();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -38,6 +49,8 @@ app.use('/Participation', participationRouter);
 app.use('/api/PoliceOfficer', PoliceOfficerApiRouter);
 app.use('/api/Case', CaseApiRouter);
 app.use('/api/Participation', ParticipationApiRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -2,6 +2,9 @@ const ParticipationRepository = require('../repository/sequelize/ParticipationRe
 const PoliceOfficerRepository = require('../repository/sequelize/PoliceOfficerRepository');
 const CaseRepository = require('../repository/sequelize/CaseRepository');
 
+
+
+
 exports.showParticipationList = (req, res, next) => {
     ParticipationRepository.getParticipations()
         .then(participations => {
@@ -15,8 +18,8 @@ exports.showParticipationList = (req, res, next) => {
 exports.showAddParticipationForm = (req, res, next) => {
     let allPoliceOfficers, allCases;
     PoliceOfficerRepository.getPoliceOfficers()
-        .then(policeOfficers => {
-            allPoliceOfficers = policeOfficers;
+        .then(policeOfficer => {
+            allPoliceOfficers = policeOfficer;
             return CaseRepository.getCases();
         })
         .then(cases => {
@@ -36,11 +39,22 @@ exports.showAddParticipationForm = (req, res, next) => {
 
 exports.showParticipationDetails = (req, res, next) => {
     const participationId = req.params.participationId;
-    ParticipationRepository.getParticipationById(participationId)
+    let allPoliceOfficers, allCases;
+    PoliceOfficerRepository.getPoliceOfficers()
+        .then(policeOfficer => {
+            allPoliceOfficers = policeOfficer;
+            return CaseRepository.getCases();
+        })
+        .then(cases => {
+            allCases = cases;
+            return ParticipationRepository.getParticipationById(participationId);
+        })
         .then(participation => {
             res.render('pages/Participation/form', {
                 participation: participation,
                 formMode: 'showDetails',
+                allPoliceOfficers: allPoliceOfficers,
+                allCases: allCases,
                 pageTitle: 'Szczegóły udziału w sprawie',
                 formAction: '',
                 navLocation: 'participation'
@@ -49,11 +63,12 @@ exports.showParticipationDetails = (req, res, next) => {
 };
 
 exports.showEditParticipationForm = (req, res, next) => {
+
     const participationId = req.params.participationId;
     let allPoliceOfficers, allCases;
     PoliceOfficerRepository.getPoliceOfficers()
-        .then(policeOfficers => {
-            allPoliceOfficers = policeOfficers;
+        .then(policeOfficer => {
+            allPoliceOfficers = policeOfficer;
             return CaseRepository.getCases();
         })
         .then(cases => {
@@ -76,9 +91,18 @@ exports.showEditParticipationForm = (req, res, next) => {
 
 exports.addParticipation = (req, res, next) => {
     const participationData = { ...req.body };
-    ParticipationRepository.createParticipation(participationData)
+    let allPoliceOfficers, allCases;
+    PoliceOfficerRepository.getPoliceOfficers()
+        .then(policeOfficer => {
+            allPoliceOfficers = policeOfficer;
+            return CaseRepository.getCases()
+        })
+        .then(Case => {
+            allCases = Case;
+            return ParticipationRepository.createParticipation(participationData)
+        })
         .then(result => {
-            res.redirect('Participation')
+            res.redirect('/Participation');
         });
 };
 

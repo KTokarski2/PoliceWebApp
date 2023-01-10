@@ -59,11 +59,12 @@ function validateForm(event) {
         errorDepartment.innerText = "Pole powinno zawierać od 2 do 50 znaków";
     }
 
-    if(!checkRequired(salaryInput.value)) {
-        valid= false;
+     if (!checkNumber(salaryInput.value)) {
+        valid = false;
         salaryInput.classList.add("error-input");
-        errorSalary.innerText = "Pole jest wymagane";
+        errorSalary.innerText = "Wartość powinna być liczbą";
     }
+
 
     if (!valid) {
         errorsSummary.innerText = "Formularz zawiera błędy";

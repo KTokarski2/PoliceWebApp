@@ -44,6 +44,7 @@ exports.createParticipation = (data) => {
 
 exports.updateParticipation = (participationId, data) => {
     return Participation.update(data, {where: {_id: participationId}});
+
 };
 
 exports.deleteParticipation = (participationId) => {

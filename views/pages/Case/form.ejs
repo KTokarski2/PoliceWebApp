@@ -1,3 +1,4 @@
+
 <%- include('../../fragments/header.ejs') %>
 
 <main>
@@ -5,7 +6,7 @@
     <script type="application/javascript" src="/js/validationCommon.js"></script>
     <h2><%= pageTitle %></h2>
     <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm(event);">
-        <input type="hidden" name="_id" value="<%= Case._id %>">
+        <input type="hidden" name="ParticipationId" value="<%= Case._id %>">
         <label for="name">Nazwa: <span class="symbol-required">*</span></label>
         <input type="text" name="name" id="name" placeholder="2-50 znaków" value="<%= Case.name%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorName" class="errors-text"></span>
@@ -13,10 +14,10 @@
         <textarea id="description" name="description" placeholder="0-100 znaków" <%= (formMode == 'showDetails') ? 'disabled' : ''%>><%= Case.description%></textarea>
         <span id="errorDescription" class="errors-text"></span>
         <label for="startingDate">Data rozpoczęcia: <span class="symbol-required">*</span></label>
-        <input type="date" name="startingDate" id="startingDate" value="<%= Case.startingDate %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <input type="date" name="startingDate" id="startingDate" value="<%= fmt.formatDate(Case.startingDate) %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorStartingDate" class="errors-text"></span>
         <label for="closingDate">Data zamknięcia: </label>
-        <input type="date" name="closingDate" id="closingDate" value="<%= Case.closingDate %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <input type="date" name="closingDate" id="closingDate" value="<%= fmt.formatDate(Case.closingDate) %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorClosingDate" class="errors-text"></span>
         <% if (formMode != 'showDetails') { %>
         <div class="form-buttons">

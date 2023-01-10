@@ -5,9 +5,9 @@
   <script type="application/javascript" src="/js/validationCommon.js"></script>
   <h2><%= pageTitle %></h2>
   <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm(event);">
-    <input type="hidden" name="_id" value="<%= participation._id%>">
+    <input type="hidden" name="_id" value="<%= participation._id %>">
     <label for="policeOfficer">Funkcjonariusz: <span class="symbol-required">*</span></label>
-    <select name="policeOfficer" id="policeOfficer" required <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
+    <select name="PoliceOfficer_id" id="policeOfficer" required <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
       <option value="" selected>-- Wybierz funkcjonariusza --</option>
       <% for(let i=0; i < allPoliceOfficers.length; i++) { let policeOfficer = allPoliceOfficers[i]; %>
       <option value="<%= policeOfficer._id %>" label="<%= policeOfficer.firstName + ' ' + policeOfficer.lastName %>"
@@ -16,7 +16,7 @@
     </select>
     <span id="errorPoliceOfficer" class="errors-text"></span>
     <label for="case">Sprawa: <span class="symbol-required">*</span></label>
-    <select name="case" id="case" required <%= (formMode == 'showDetails') ? 'disabled' : '' %> >
+    <select name="Case_id" id="case" required <%= (formMode == 'showDetails') ? 'disabled' : '' %> >
       <option value="" selected>-- Wybierz sprawę --</option>
       <% for (let i=0; i < allCases.length; i++) { let Case = allCases[i]; %>
       <option value="<%= Case._id %>" label="<%= Case.name %>"
@@ -25,13 +25,13 @@
     </select>
     <span id="errorCase" class="errors-text"></span>
     <label for="startingDate">Data rozpoczęcia: <span class="symbol-required">*</span></label>
-    <input type="date" name="startingDate" id="startingDate" value="<%= participation.startingDate %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+    <input type="date" name="startingDate" id="startingDate" value="<%= fmt.formatDate(participation.startingDate) %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
     <span id="errorStartingDate" class="errors-text"></span>
     <label for="endingDate">Data zakończenia: </label>
-    <input type="date" name="endingDate" id="endingDate" value="<%= participation.endingDate %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
+    <input type="date" name="endingDate" id="endingDate" value="<%= fmt.formatDate(participation.endingDate) %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
     <span id="errorEndingDate" class="errors-text"></span>
     <label for="actionTaken">Planowane działania: <span class="symbol-required">*</span></label>
-    <textarea id="actionTaken" name="actionTaken" placeholder="0 - 100 znaków" <%= (formMode == 'showDetails') ? 'disabled' : '' %>><%= participation.description%></textarea>
+    <textarea id="actionTaken" name="actionTaken" placeholder="0 - 100 znaków" <%= (formMode == 'showDetails') ? 'disabled' : '' %>><%= participation.actionTaken%></textarea>
     <span id="errorActionTaken" class="errors-text"></span>
     <% if (formMode != 'showDetails') { %>
     <div class="form-buttons">
@@ -39,7 +39,7 @@
       <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
       <a class="form-button-cancel" href="list.ejs">Anuluj</a>
     </div>
-    <% } else {%>
+    <% } else { %>
     <div class="form-buttons">
       <p id="errorsSummary" class="errors-text"></p>
       <a class="details-button-edit" href="/Participation/edit/<%= participation._id %>">Edytuj</a>

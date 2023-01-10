@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const participationController = require('../controllers/participationController');
-
+//router.get('/edit/:participationId', participationController.showEditParticipationForm);
+//router.get('/details/:participationId', participationController.showParticipationDetails);
 router.get('/', participationController.showParticipationList);
 router.get('/add', participationController.showAddParticipationForm);
 router.post('/add', participationController.addParticipation);
