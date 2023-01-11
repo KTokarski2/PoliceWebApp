@@ -31,18 +31,19 @@ exports.getParticipationById = (participationId) => {
 };
 
 exports.createParticipation = (data) => {
-    console.log(JSON.stringify(data));
-
     return Participation.create({
         PoliceOfficer_id: data.PoliceOfficer_id,
         Case_id: data.Case_id,
-        startingDate: data.startingDate,
-        endingDate: data.endingDate,
+        startingDate: data.startingDate == "" ? null : data.startingDate,
+        endingDate: data.endingDate == "" ? null : data.startingDate,
         actionTaken: data.actionTaken
     });
 };
 
 exports.updateParticipation = (participationId, data) => {
+    const startingDate = data.startingDate == "" ? null : data.startingDate;
+    const endingDate = data.endingDate == "" ? null : data.endingDate;
+    const actionTaken = data.actionTaken;
     return Participation.update(data, {where: {_id: participationId}});
 
 };

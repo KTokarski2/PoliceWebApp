@@ -24,17 +24,17 @@ exports.createCase = (newCaseData) => {
     return Case.create( {
         name: newCaseData.name,
         description: newCaseData.description,
-        startingDate: newCaseData.startingDate,
-        closingDate: newCaseData.closingDate
+        startingDate: newCaseData.startingDate == "" ? null : newCaseData.startingDate,
+        closingDate: newCaseData.closingDate == "" ? null : newCaseData.closingDate
     });
 };
 
 exports.updateCase = (Case_id, CaseData) => {
     const name = CaseData.name;
     const description = CaseData.description;
-    const startingDate = CaseData.startingDate;
-    const closingDate = CaseData.closingDate;
-    return Case.update(CaseData, {where: {_id: Case_id}});
+    const startingDate = CaseData.startingDate == "" ? null : CaseData.startingDate;
+    const closingDate = CaseData.closingDate == "" ? null : CaseData.closingDate;
+    return Case.update({name, description, startingDate, closingDate}, {where: {_id: Case_id}});
 };
 
 exports.deleteCase = (Case_id) => {

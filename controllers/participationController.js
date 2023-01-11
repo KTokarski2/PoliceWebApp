@@ -10,7 +10,8 @@ exports.showParticipationList = (req, res, next) => {
         .then(participations => {
             res.render('pages/Participation/list', {
                 participations: participations,
-                navLocation: 'participation'
+                navLocation: 'participation',
+                validationErrors: []
             });
         });
 };
@@ -32,7 +33,8 @@ exports.showAddParticipationForm = (req, res, next) => {
                 pageTitle: 'Nowy udział w sprawie',
                 btnLabel: 'Przydziel policjanta do sprawy',
                 formAction: '/Participation/add',
-                navLocation: 'participation'
+                navLocation: 'participation',
+                validationErrors: []
             });
         });
 };
@@ -57,7 +59,8 @@ exports.showParticipationDetails = (req, res, next) => {
                 allCases: allCases,
                 pageTitle: 'Szczegóły udziału w sprawie',
                 formAction: '',
-                navLocation: 'participation'
+                navLocation: 'participation',
+                validationErrors: []
             });
         });
 };
@@ -84,7 +87,8 @@ exports.showEditParticipationForm = (req, res, next) => {
                 pageTitle: 'Edycja udziału w sprawie',
                 btnLabel: 'Edytuj udział w sprawie',
                 formAction: '/Participation/edit',
-                navLocation: 'participation'
+                navLocation: 'participation',
+                validationErrors: []
             });
         });
 };
@@ -103,16 +107,51 @@ exports.addParticipation = (req, res, next) => {
         })
         .then(result => {
             res.redirect('/Participation');
+        })
+        .catch(err => {
+            res.render('pages/Participation/form', {
+                participation: participationData,
+                formMode: 'createNew',
+                allPoliceOfficers: allPoliceOfficers,
+                allCases: allCases,
+                pageTitle: 'Nowy udział w sprawie',
+                btnLabel: 'Przydziel policjanta do sprawy',
+                formAction: '/Participation/add',
+                navLocation: 'participation',
+                validationErrors: err.errors
+            });
         });
 };
 
 exports.updateParticipation = (req, res, next) => {
     const participationId = req.body._id;
     const participationData = { ...req.body };
-    ParticipationRepository.updateParticipation(participationId, participationData)
-        .then( result => {
+    PoliceOfficerRepository.getPoliceOfficers()
+        .then(policeOfficer => {
+            allPoliceOfficers = policeOfficer;
+            return CaseRepository.getCases()
+        })
+        .then(Case => {
+            allCases = Case;
+            return ParticipationRepository.updateParticipation(participationId, participationData)
+        })
+        .then(result => {
             res.redirect('/Participation');
+        })
+        .catch(err => {
+            res.render('pages/Participation/form', {
+                participation: participationData,
+                formMode: 'createNew',
+                allPoliceOfficers: allPoliceOfficers,
+                allCases: allCases,
+                pageTitle: 'Edycja udziału w sprawie',
+                btnLabel: 'Edytuj udział w sprawie',
+                formAction: '/Participation/add',
+                navLocation: 'participation',
+                validationErrors: err.errors
+            });
         });
+
 };
 
 exports.deleteParticipation = (req, res, next) => {

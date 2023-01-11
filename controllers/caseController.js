@@ -5,7 +5,8 @@ exports.showCaseList = (req, res, next) => {
         .then(cases => {
             res.render('pages/Case/list', {
                 cases: cases,
-                navLocation: 'case'
+                navLocation: 'case',
+                validationErrors: []
             });
         });
 };
@@ -18,7 +19,8 @@ exports.showAddCaseForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Dodaj sprawę',
         formAction: '/Case/add',
-        navLocation: 'case'
+        navLocation: 'case',
+        validationErrors: []
     });
 };
 
@@ -31,7 +33,8 @@ exports.showCaseDetails = (req, res, next) => {
                 formMode: 'showDetails',
                 pageTitle: 'Szczegóły sprawy',
                 formAction: '',
-                navLocation: 'case'
+                navLocation: 'case',
+                validationErrors: []
             });
         });
 };
@@ -46,7 +49,8 @@ exports.showEditCaseForm = (req, res, next) => {
                 pageTitle: 'Edycja sprawy',
                 btnLabel: 'Edytuj sprawę',
                 formAction: '/Case/edit',
-                navLocation: 'case'
+                navLocation: 'case',
+                validationErrors: []
             });
         });
 };
@@ -56,6 +60,17 @@ exports.addCase = (req, res, next) => {
     CaseRepository.createCase(caseData)
         .then(result => {
             res.redirect('/Case');
+        })
+        .catch(err => {
+            res.render('pages/Case/form', {
+                Case: caseData,
+                formMode: 'createNew',
+                pageTitle: 'Nowa sprawa',
+                btnLabel: 'Dodaj sprawę',
+                formAction: '/Case/add',
+                navLocation: 'case',
+                validationErrors: err.errors
+            });
         });
 };
 
@@ -65,7 +80,19 @@ exports.updateCase = (req, res, next) => {
     CaseRepository.updateCase(caseId, caseData)
         .then( result => {
             res.redirect('/Case');
+        })
+        .catch(err => {
+            res.render('pages/Case/form', {
+                Case: caseData,
+                formMode: 'edit',
+                pageTitle: 'Edycja sprawy',
+                btnLabel: 'Edytuj sprawę',
+                formAction: '/Case/edit',
+                navLocation: 'case',
+                validationErrors: err.errors
+            });
         });
+
 
 };
 
@@ -76,3 +103,4 @@ exports.deleteCase = (req, res, next) => {
             res.redirect('/Case');
         });
 };
+

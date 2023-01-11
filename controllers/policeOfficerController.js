@@ -21,7 +21,8 @@ exports.showAddPoliceOfficerForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Dodaj policjanta',
         formAction: '/PoliceOfficer/add',
-        navLocation: 'policeOfficer'
+        navLocation: 'policeOfficer',
+        validationErrors: []
     });
 };
 
@@ -36,7 +37,8 @@ exports.showPoliceOfficerDetails = (req, res, next) => {
                 formMode: 'showDetails',
                 pageTitle: 'Szczegóły policjanta',
                 formAction: '',
-                navLocation: 'policeOfficer'
+                navLocation: 'policeOfficer',
+                validationErrors: []
             });
         });
 
@@ -53,7 +55,8 @@ exports.showEditPoliceOfficerForm = (req, res, next) => {
                 pageTitle: 'Edycja policjanta',
                 btnLabel: 'Edytuj policjanta',
                 formAction: '/PoliceOfficer/edit',
-                navLocation: 'policeOfficer'
+                navLocation: 'policeOfficer',
+                validationErrors: []
             });
         });
 };
@@ -63,6 +66,17 @@ exports.addPoliceOfficer = (req, res, next) => {
     PoliceOfficerRepository.createPoliceOfficer(policeOfficerData)
         .then( result => {
             res.redirect('/PoliceOfficer');
+        })
+        .catch(err => {
+            res.render('pages/PoliceOfficer/form', {
+                policeOfficer: policeOfficerData,
+                formMode: 'createNew',
+                pageTitle: 'Nowy policjant',
+                btnLabel: 'Dodaj policjanta',
+                formAction: '/PoliceOfficer/add',
+                navLocation: 'policeOfficer',
+                validationErrors: err.errors
+            });
         });
 };
 
@@ -72,7 +86,19 @@ exports.updatePoliceOfficer = (req, res, next) => {
     PoliceOfficerRepository.updatePoliceOfficer(policeOfficerId, policeOfficerData)
         .then( result => {
             res.redirect('/PoliceOfficer');
+        })
+        .catch(err => {
+            res.render('pages/PoliceOfficer/form', {
+                policeOfficer: policeOfficerData,
+                formMode: 'edit',
+                pageTitle: 'Edycja policjanta',
+                btnLabel: 'Edytuj policjanta',
+                formAction: '/PoliceOfficer/edit',
+                navLocation: 'policeOfficer',
+                validationErrors: err.errors
+            });
         });
+
 };
 
 exports.deletePoliceOfficer = (req, res, next) => {

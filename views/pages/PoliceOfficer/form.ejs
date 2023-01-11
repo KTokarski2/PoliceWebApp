@@ -4,17 +4,25 @@
     <script type="application/javascript" src="/js/validationPoliceOfficerForm.js"></script>
     <script type="application/javascript" src="/js/validationCommon.js"></script>
     <h2><%= pageTitle %></h2>
-    <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm();">
+    <form class="form" method="post" action="<%= formAction %>" novalidate>
         <input type="hidden" name="_id" value="<%= policeOfficer._id %>">
         <label for="firstName">Imię: <span class="symbol-required">*</span></label>
-        <input type="text" name="firstName" id="firstName" placeholder="2-50 znaków" value="<%= policeOfficer.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-        <span id="errorFirstName" class="errors-text"></span>
+        <input class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>" type="text" name="firstName" id="firstName" placeholder="2-50 znaków" value="<%= policeOfficer.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorFirstName" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('firstName'))) { %>
+                <%= validationErrors.find(e => e.path.includes('firstName')).message %>
+            <% } %>
+        </span>
         <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
-        <input type="text" name="lastName" id="lastName" placeholder="2-50 znaków" value="<%= policeOfficer.lastName%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-        <span id="errorLastName" class="errors-text"></span>
+        <input class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : '' %>" type="text" name="lastName" id="lastName" placeholder="2-50 znaków" value="<%= policeOfficer.lastName%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorLastName" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('lastName'))) { %>
+                <%= validationErrors.find(e => e.path.includes('lastName')).message %>
+            <% } %>
+        </span>
         <label for="rank">Stopień: <span class="symbol-required">*</span></label>
-        <% //var options = [ "Posterunkowy", "Starszy posterunkowy", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" ]; %>
-        <select name="rank" id="rank" <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
+        <select class="<%= validationErrors.find(e => e.path.includes('rank')) ? 'error-input' : '' %>" name="rank" id="rank" <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
+            <% if (formMode != 'createNew') { %>
             <option><%= policeOfficer.rank %></option>
             <option value="Posterunkowy">Posterunkowy</option>
             <option value="Starszy posterunkowy">Starszy posterunkowy</option>
@@ -33,14 +41,46 @@
             <option value="Inspektor">Inspektor</option>
             <option value="Nadinspektor">Nadinspektor</option>
             <option value="Generalny inspektor">Generalny inspektor</option>
+            <% }else { %>
+                    <option value="" selected>-- Wybierz stopień --</option>
+                    <option value="Posterunkowy">Posterunkowy</option>
+                    <option value="Starszy posterunkowy">Starszy posterunkowy</option>
+                    <option value="Sierżant">Sierżant</option>
+                    <option value="Starszy sierżant">Starszy sierżant</option>
+                    <option value="Sierżant sztabowy">Sierżant sztabowy</option>
+                    <option value="Młodszy aspirant">Młodszy aspirant</option>
+                    <option value="Aspirant">Aspirant</option>
+                    <option value="Starszy aspirant">Starszy aspirant</option>
+                    <option value="Aspirant sztabowy">Aspirant sztabowy</option>
+                    <option value="Podkomisarz">Podkomisarz</option>
+                    <option value="Komisarz">Komisarz</option>
+                    <option value="Nadkomisarz">Nadkomisarz</option>
+                    <option value="Podinspektor">Podinspektor</option>
+                    <option value="Młodszy inspektor">Młodszy inspektor</option>
+                    <option value="Inspektor">Inspektor</option>
+                    <option value="Nadinspektor">Nadinspektor</option>
+                    <option value="Generalny inspektor">Generalny inspektor</option>
+            <% } %>
         </select>
-        <span id="errorRank" class="errors-text"></span>
+        <span id="errorRank" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('rank'))) { %>
+                <%= validationErrors.find(e => e.path.includes('rank')).message %>
+            <% } %>
+        </span>
         <label for="department">Wydział: <span class="symbol-required">*</span></label>
-        <input type="text" name="department" id="department" placeholder="2-50 znaków" value="<%= policeOfficer.department%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-        <span id="errorDepartment" class="errors-text"></span>
+        <input class="<%= validationErrors.find(e => e.path.includes('department')) ? 'error-input' : '' %>" type="text" name="department" id="department" placeholder="2-50 znaków" value="<%= policeOfficer.department%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorDepartment" class="errors-text">
+            <%if (validationErrors.find(e => e.path.includes('department'))) { %>
+                <%= validationErrors.find(e => e.path.includes('department')).message %>
+            <% } %>
+        </span>
         <label for="salary">Pensja: <span class="symbol-required">*</span></label>
-        <input type="number" name="salary" id="salary" step="any" placeholder="np. 3000.00 zł" value="<%= policeOfficer.salary%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-        <span id="errorSalary" class="errors-text"></span>
+        <input class="<%= validationErrors.find(e => e.path.includes('salary')) ? 'error-input' : '' %>" type="text" name="salary" id="salary" step="any" placeholder="np. 3000.00 zł" value="<%= isNaN(policeOfficer.salary) ? "" : policeOfficer.salary %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorSalary" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('salary'))) { %>
+                <%= validationErrors.find(e => e.path.includes('salary')).message %>
+            <% } %>
+        </span>
             <% if (formMode != 'showDetails') { %>
             <div class="form-buttons">
                 <p id="errorsSummary" class="errors-text"></p>
@@ -56,7 +96,7 @@
             <% } %>
 
     </form>
-    <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+    <% if (formMode == 'showDetails') { %>
     <h2>Szczegóły uczestnictwa w sprawach</h2>
     <table class="table-list">
         <thead>
@@ -71,8 +111,8 @@
         <% for (let participation of policeOfficer.participations) { %>
         <tr>
             <td><%= participation.Case.name%></td>
-            <td><%= participation.startingDate.toISOString().split('T')[0] %></td>
-            <td><%= participation.endingDate ? participation.endingDate.toISOString().split('T')[0] : '' %></td>
+            <td><%= fmt.formatDate(participation.startingDate) %></td>
+            <td><%= fmt.formatDate(participation.endingDate) %></td>
             <td><ul class="list-actions">
                     <a class="list-actions-button-details" href="/Case/details/<%= participation._id %>"><span class="material-symbols-outlined">info</span></a>
                 </ul>
