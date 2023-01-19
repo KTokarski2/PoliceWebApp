@@ -15,7 +15,9 @@ const Participation = sequelize.define('Participation', {
         validate: {
             notEmpty: {
                 msg: "Pole jest wymagane"
-            }
+            },
+
+
         }
     },
     Case_id: {
@@ -31,7 +33,7 @@ const Participation = sequelize.define('Participation', {
         type: Sequelize.DATE,
         allowNull: false,
         validate: {
-            notEmpty: {
+            notNull: {
                 msg: "Pole jest wymagane"
             },
             isBefore: {
@@ -47,15 +49,25 @@ const Participation = sequelize.define('Participation', {
             isBefore: {
                 args: gtd(),
                 msg: "Data nie może być z przyszłości"
+            },
+            isAfterDate: function (endingDate) {
+                if (endingDate != null) {
+                    if (this.startingDate > endingDate) {
+                        throw new Error("Data zamknięcia musi być późniejsza niż rozpoczęcia");
+                    }
+                }
             }
         }
     },
     actionTaken: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
         validate: {
+            notEmpty: {
+                msg: "Pole jest wymagane"
+            },
             len: {
-                args: [2,100],
+                args: [0,100],
                 msg: "Pole powinno zawierać od 2 do 100 znaków"
             }
         }

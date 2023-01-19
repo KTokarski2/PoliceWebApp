@@ -23,3 +23,24 @@
         <li><a href="/Participation" class="<%= navLocation == 'participation' ? 'active' : '' %>">Uczestnictwo w sprawach</a></li>
     </ul>
 </nav>
+<% if (!loggedUser) { %>
+
+    <div id="login" class="login-div">
+        <h5>Logowanie</h5>
+        <form method="post" action="/login" novalidate>
+            <label for="lastName">Nazwisko: </label>
+            <input type="text" id="loginLastName" name="lastName">
+
+            <label for="loginPassword">Hasło: </label>
+            <input type="password" id="loginPassword" name="password">
+
+            <input type="submit" class="button-login" value="Zaloguj się">
+            <span id="errors-text"><%= loginError ? loginError : ''%></span>
+        </form>
+    </div>
+<% } else { %>
+
+    <span class="loginInfo">Jesteś zalogowany jako: <%= loggedUser.firstName + " " + loggedUser.lastName%></span>
+    <a class="button-logout" href="/logout">Wyloguj się</a>
+
+<% } %>

@@ -38,7 +38,7 @@ const Case = sequelize.define('Case', {
         type: Sequelize.DATE,
         allowNull: false,
         validate: {
-            notEmpty: {
+            notNull: {
                 msg: "Pole jest wymagane"
             },
             isDate: {
@@ -48,6 +48,7 @@ const Case = sequelize.define('Case', {
                 args: gtd(),
                 msg: "Data nie może być z przyszłości"
             },
+
         }
     },
     closingDate: {
@@ -57,9 +58,16 @@ const Case = sequelize.define('Case', {
             isBefore: {
                 args: gtd(),
                 msg: "Data nie może być z przyszłości"
+            },
+            isAfterStartingDate: function (closingDate) {
+                if (closingDate != null) {
+                    if (this.startingDate > endingDate) {
+                        throw new Error("Data zamknięcia musi być późniejsza niż rozpoczęcia");
+                    }
+                }
             }
         },
-    }
+    },
 });
 
 module.exports = Case;

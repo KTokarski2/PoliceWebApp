@@ -34,6 +34,19 @@ const PoliceOfficer = sequelize.define('PoliceOfficer', {
             },
         }
     },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Należy podać hasło"
+            },
+            len: {
+                args: [2, 50],
+                msg: "Pole powinno zawierać od 2 do 50 znaków"
+            }
+        }
+    },
     rank: {
         type: Sequelize.STRING,
         allowNull: false,

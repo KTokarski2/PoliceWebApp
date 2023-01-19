@@ -141,7 +141,7 @@ exports.updateParticipation = (req, res, next) => {
         .catch(err => {
             res.render('pages/Participation/form', {
                 participation: participationData,
-                formMode: 'createNew',
+                formMode: 'edit',
                 allPoliceOfficers: allPoliceOfficers,
                 allCases: allCases,
                 pageTitle: 'Edycja udziału w sprawie',

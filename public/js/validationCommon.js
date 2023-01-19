@@ -46,7 +46,7 @@ function checkTextLengthRange(value, min, max) {
 }
 
 function checkSelected(value) {
-    if ((value == "-- Wybierz stopień --") || (value == "-- Wybierz sprawę --") || (value == "-- Wybierz funkcjonariusza --")) {
+    if (!value) {
         return false;
     }
     return true;

@@ -10,7 +10,9 @@
             <th>Stopień</th>
             <th>Wydział</th>
             <th>Pensja</th>
-            <th>Akcje</th>
+            <% if (loggedUser) {%>
+                <th>Akcje</th>
+            <% } %>
         </tr>
     </thead>
       <tbody>
@@ -21,18 +23,22 @@
                 <td><%= policeOfficer.rank%></td>
                 <td><%= policeOfficer.department%></td>
                 <td><%= policeOfficer.salary%></td>
-                <td>
-                    <ul class="list-actions">
+                <% if (loggedUser) {%>
+                    <td>
+                        <ul class="list-actions">
                             <li><a class="list-actions-button-details" href="/PoliceOfficer/details/<%= policeOfficer._id%>"><span class="material-symbols-outlined">info</span></a></li>
                             <li><a class="list-actions-button-edit" href="/PoliceOfficer/edit/<%= policeOfficer._id%>"><span class="material-symbols-outlined">edit_square</span></a></li>
                             <li><a class="list-actions-button-delete" href="/PoliceOfficer/delete/<%= policeOfficer._id%>"><span class="material-symbols-outlined">delete</span></a></li>
-                    </ul>
-                </td>
+                        </ul>
+                    </td>
+                <% } %>
             </tr>
         <% } %>
       </tbody>
   </table>
-    <p><a class="button-add" href="/PoliceOfficer/add">Dodaj nowego policjanta</a></p>
+    <% if (loggedUser) { %>
+        <p><a class="button-add" href="/PoliceOfficer/add">Dodaj nowego policjanta</a></p>
+    <% } %>
 </main>
 
 <%- include('../../fragments/footer.ejs') %>

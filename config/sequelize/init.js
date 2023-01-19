@@ -3,6 +3,8 @@ const sequelize = require('./sequelize');
 const PoliceOfficer = require('../../model/sequelize/PoliceOfficer');
 const Case = require('../../model/sequelize/Case');
 const Participation = require('../../model/sequelize/Participation');
+const authUtil = require('../../util/authUtils');
+const passHash = authUtil.hashPassword('12345')
 
 module.exports = () => {
     PoliceOfficer.hasMany(Participation, {as: 'participations', foreignKey: {name: 'PoliceOfficer_id', allowNull: false}, constraints: true, onDelete: 'CASCADE'});
@@ -20,10 +22,10 @@ module.exports = () => {
         .then(PoliceOfficers => {
             if ( !PoliceOfficers || PoliceOfficers.length == 0 ) {
                 return PoliceOfficer.bulkCreate([
-                    {firstName: 'Adam', lastName: 'Małysz', rank: 'Starszy aspirant', department: 'ruch drogowy', salary: 5000},
-                    {firstName: 'Kamil', lastName: 'Stoch', rank: 'Posterunkowy', department: 'prewencja', salary: 3500},
-                    {firstName: 'Piotr', lastName: 'Żyła', rank: 'Sierżant', department: 'kryminalny', salary: 4000},
-                    {firstName: 'Sławomir', lastName: 'Borewicz', rank: 'Inspektor', department: 'kryminalny', salary: 10000},
+                    {firstName: 'Adam', lastName: 'Małysz', password: passHash, rank: 'Starszy aspirant', department: 'ruch drogowy', salary: 5000},
+                    {firstName: 'Kamil', lastName: 'Stoch', password: passHash, rank: 'Posterunkowy', department: 'prewencja', salary: 3500},
+                    {firstName: 'Piotr', lastName: 'Żyła', password: passHash, rank: 'Sierżant', department: 'kryminalny', salary: 4000},
+                    {firstName: 'Sławomir', lastName: 'Borewicz', password: passHash, rank: 'Inspektor', department: 'kryminalny', salary: 10000},
                 ])
                     .then( () => {
                         return PoliceOfficer.findAll();

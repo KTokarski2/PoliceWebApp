@@ -7,11 +7,13 @@
   <form class="form" method="post" action="<%= formAction %>" novalidate>
     <input type="hidden" name="_id" value="<%= participation._id %>">
     <label for="policeOfficer">Funkcjonariusz: <span class="symbol-required">*</span></label>
-    <select class="<%= validationErrors.find(e => e.path.includes('PoliceOfficer_id')) ? 'error-input' : '' %>" name="PoliceOfficer_id" id="policeOfficer" required <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
+    <select class="<%= validationErrors.find(e => e.path.includes('PoliceOfficer_id')) ? 'error-input' : '' %>" name="PoliceOfficer_id" id="PoliceOfficer_id" required <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
+      <% if (formMode != 'edit') { %>
       <option value="" selected>-- Wybierz funkcjonariusza --</option>
+        <% } %>
       <% for(let i=0; i < allPoliceOfficers.length; i++) { let policeOfficer = allPoliceOfficers[i]; %>
       <option value="<%= policeOfficer._id %>" label="<%= policeOfficer.firstName + ' ' + policeOfficer.lastName %>"
-          <%= (participation._id && policeOfficer._id.toString() == participation.PoliceOfficer._id.toString()) ? 'selected' : ''%>></option>
+          <%= (policeOfficer._id.toString() == participation.PoliceOfficer_id) ? 'selected' : ''%>></option>
       <% } %>
     </select>
     <span id="errorPoliceOfficer" class="errors-text">
@@ -20,11 +22,13 @@
       <% } %>
     </span>
     <label for="case">Sprawa: <span class="symbol-required">*</span></label>
-    <select class="<%= validationErrors.find(e => e.path.includes('Case_id')) ? 'error-input' : '' %>" name="Case_id" id="case" required <%= (formMode == 'showDetails') ? 'disabled' : '' %> >
+    <select class="<%= validationErrors.find(e => e.path.includes('Case_id')) ? 'error-input' : '' %>" name="Case_id" id="Case_id" required <%= (formMode == 'showDetails') ? 'disabled' : '' %> >
+      <% if (formMode != 'edit') { %>
       <option value="" selected>-- Wybierz sprawę --</option>
+        <% } %>
       <% for (let i=0; i < allCases.length; i++) { let Case = allCases[i]; %>
       <option value="<%= Case._id %>" label="<%= Case.name %>"
-          <%= (participation._id && Case._id.toString() == participation.Case._id.toString()) ? 'selected' : ''%>></option>
+          <%= (Case._id.toString() == participation.Case_id) ? 'selected' : ''%>></option>
       <% } %>
     </select>
     <span id="errorCase" class="errors-text">

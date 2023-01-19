@@ -42,13 +42,30 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const session = require('express-session');
+app.use(session({
+    secret: 'my_secret_password',
+    resave: false
+}));
+
+const authUtil = require('./util/authUtils');
+
+app.use((req, res, next) => {
+    const loggedUser = req.session.loggedUser;
+    res.locals.loggedUser = loggedUser;
+    if (!res.locals.loginError) {
+        res.locals.loginError = undefined;
+    }
+    next();
+})
+
 app.use('/', indexRouter);
-app.use('/PoliceOfficer', policeOfficerRouter);
-app.use('/Case', caseRouter);
-app.use('/Participation', participationRouter);
-app.use('/api/PoliceOfficer', PoliceOfficerApiRouter);
-app.use('/api/Case', CaseApiRouter);
-app.use('/api/Participation', ParticipationApiRouter);
+app.use('/PoliceOfficer', authUtil.permitAuthenticatedUser, policeOfficerRouter);
+app.use('/Case', authUtil.permitAuthenticatedUser, caseRouter);
+app.use('/Participation', authUtil.permitAuthenticatedUser, participationRouter);
+app.use('/api/PoliceOfficer', authUtil.permitAuthenticatedUser, PoliceOfficerApiRouter);
+app.use('/api/Case', authUtil.permitAuthenticatedUser, CaseApiRouter);
+app.use('/api/Participation', authUtil.permitAuthenticatedUser, ParticipationApiRouter);
 
 
 

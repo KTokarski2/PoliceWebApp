@@ -25,6 +25,7 @@ exports.createPoliceOfficer = (newPoliceOfficerData) => {
     return PoliceOfficer.create({
         firstName: newPoliceOfficerData.firstName,
         lastName: newPoliceOfficerData.lastName,
+        password: newPoliceOfficerData.password,
         rank: newPoliceOfficerData.rank,
         department: newPoliceOfficerData.department,
         salary: newPoliceOfficerData.salary //== "" ? null : newPoliceOfficerData.salary
@@ -45,3 +46,9 @@ exports.deletePoliceOfficer = (PoliceOfficer_id) => {
        where: { _id: PoliceOfficer_id}
     });
 };
+
+exports.findByNameAndLastName = (lastName) => {
+    return PoliceOfficer.findOne({
+        where: {lastName: lastName}
+    });
+}

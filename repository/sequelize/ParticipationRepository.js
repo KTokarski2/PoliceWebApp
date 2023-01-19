@@ -35,7 +35,7 @@ exports.createParticipation = (data) => {
         PoliceOfficer_id: data.PoliceOfficer_id,
         Case_id: data.Case_id,
         startingDate: data.startingDate == "" ? null : data.startingDate,
-        endingDate: data.endingDate == "" ? null : data.startingDate,
+        endingDate: data.endingDate == "" ? null : data.endingDate,
         actionTaken: data.actionTaken
     });
 };
@@ -44,7 +44,7 @@ exports.updateParticipation = (participationId, data) => {
     const startingDate = data.startingDate == "" ? null : data.startingDate;
     const endingDate = data.endingDate == "" ? null : data.endingDate;
     const actionTaken = data.actionTaken;
-    return Participation.update(data, {where: {_id: participationId}});
+    return Participation.update({startingDate, endingDate, actionTaken}, {where: {_id: participationId}});
 
 };
 
