@@ -85,7 +85,8 @@
 			"endingDate": "Ending date",
 			"name": "Name",
 			"description": "Description",
-			"assignedPoliceOfficers": "Assigned police officers"
+			"assignedPoliceOfficers": "Assigned police officers",
+			"asssignedPoliceOfficers": "case.fields.asssignedPoliceOfficers"
 		},
 		"list": {
 			"name": "List of cases"

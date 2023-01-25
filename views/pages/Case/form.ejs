@@ -50,7 +50,7 @@
         <% } %>
     </form>
     <% if (formMode == 'showDetails') { %>
-    <h2><%= ('case.fields.asssignedPoliceOfficers') %></h2>
+    <h2><%= __('case.fields.assignedPoliceOfficers') %></h2>
     <table class="table-list">
         <thead>
         <tr>
@@ -58,7 +58,7 @@
             <th><%= __('policeOfficer.fields.lastName') %></th>
             <th><%= __('case.fields.startingDate') %></th>
             <th><%= __('case.fields.endingDate') %></th>
-            <th><%= __('participation.fields.actionTaken')%></th>
+            <th><%= __('participation.list.actions')%></th>
         </tr>
         </thead>
         <tbody>
