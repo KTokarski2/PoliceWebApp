@@ -13,11 +13,11 @@ const PoliceOfficer = sequelize.define('PoliceOfficer', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "error.required"
             },
             len: {
                 args: [2,50],
-                msg: "Pole powinno zawierać od 2 do 50 znaków"
+                msg: "error.length"
             },
         }
     },
@@ -26,11 +26,11 @@ const PoliceOfficer = sequelize.define('PoliceOfficer', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "error.required"
             },
             len: {
                 args: [2,50],
-                msg: "Pole powinno zawierać od 2 do 50 znaków"
+                msg: "error.length"
             },
         }
     },
@@ -39,11 +39,11 @@ const PoliceOfficer = sequelize.define('PoliceOfficer', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Należy podać hasło"
+                msg: "error.password"
             },
             len: {
-                args: [2, 10000],
-                msg: "Pole powinno zawierać od 2 do 50 znaków"
+                args: [1, 100],
+                msg: "error.required"
             }
         }
     },
@@ -52,11 +52,11 @@ const PoliceOfficer = sequelize.define('PoliceOfficer', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "error.required"
             },
             notContains: {
                 args: '-- Wybierz stopień --',
-                msg: "Należy wybrać stopień"
+                msg: "error.rank"
             }
 
         }
@@ -66,11 +66,11 @@ const PoliceOfficer = sequelize.define('PoliceOfficer', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "error.required"
             },
             len: {
                 args: [2,50],
-                msg: "Pole powinno zawierać od 2 do 50 znaków"
+                msg: "error.length"
             },
         }
     },
@@ -79,18 +79,18 @@ const PoliceOfficer = sequelize.define('PoliceOfficer', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "error.required"
             },
             len: {
                 args: [4,7],
-                msg: "Pole powinno zawierać od 4 do 8 cyfr"
+                msg: "error.numberLength"
             },
             min: {
                 args: [0],
-                msg: "Pole nie może przyjmować wartości ujemnych"
+                msg: "error.positive"
             },
             isNumeric: {
-                msg: "Pole powinno być liczbą"
+                msg: "error.numeric"
             }
         }
     }

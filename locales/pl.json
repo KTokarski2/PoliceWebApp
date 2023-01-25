@@ -72,7 +72,8 @@
 					"header": "Confirmation",
 					"text": "The new police officer has benn successfully updated"
 				}
-			}
+			},
+			"rankSelect": "-- Wybierz stopień --"
 		}
 	},
 	"case": {
@@ -121,7 +122,12 @@
 			"actionsTaken": "Podjęte działania"
 		},
 		"list": {
-			"name": "Lista udziału w sprawach"
+			"name": "Lista udziału w sprawach",
+			"policeOfficerName": "Imię policjanta",
+			"policeOfficerSurname": "Nazwisko policjanta",
+			"case": "Sprawa",
+			"actions": "Akcje",
+			"button": "Przydziel policjanta do sprawy"
 		},
 		"form": {
 			"add": {
@@ -133,9 +139,28 @@
 				"btnLabel": "Edytuj"
 			},
 			"details": {
-				"pageTitle": "Szczegóły udziału w sprawie",
-				"btnLabel": "Edytuj"
-			}
+				"pageTitle": "Szczegóły udziału w sprawie"
+			},
+			"officer": "Funkcjonariuszq",
+			"case": "Sprawa",
+			"startingDate": "Data rozpoczęcia",
+			"endingDate": "Data zakończenia",
+			"actionTaken": "Planowane działania",
+			"officerSelect": "-- Wybierz funkcjonariusza --",
+			"caseSelect": "-- Wybierz sprawę --"
 		}
+	},
+	"error": {
+		"required": "Pole jest wymagane",
+		"length": "Pole powinno zawierać od 2 do 50 znaków",
+		"length100": "Pole powinno zawierać od 2 do 100 znaków",
+		"password": "Hasło jest wymagane",
+		"rank": "Stopień jest wymagany",
+		"positive": "Wartość musi być dodatnia",
+		"numberLength": "Pole powinno zawierać od 4 do 8 cyfr",
+		"numeric": "Pole musi być liczbą",
+		"futDate": "Data nie może być z przyszłości",
+		"aftDate": "Data musi następować po poprzedniej dacie",
+		"isDate": "Pole powinno być datą"
 	}
 }

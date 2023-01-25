@@ -30,8 +30,8 @@ exports.showAddParticipationForm = (req, res, next) => {
                 formMode: 'createNew',
                 allPoliceOfficers: allPoliceOfficers,
                 allCases: allCases,
-                pageTitle: 'Nowy udział w sprawie',
-                btnLabel: 'Przydziel policjanta do sprawy',
+                pageTitle: req.__('participation.form.add.pageTitle'),
+                btnLabel: req.__('participation.form.add.btnLabel'),
                 formAction: '/Participation/add',
                 navLocation: 'participation',
                 validationErrors: []
@@ -57,7 +57,7 @@ exports.showParticipationDetails = (req, res, next) => {
                 formMode: 'showDetails',
                 allPoliceOfficers: allPoliceOfficers,
                 allCases: allCases,
-                pageTitle: 'Szczegóły udziału w sprawie',
+                pageTitle: req.__('participation.form.details.pageTitle'),
                 formAction: '',
                 navLocation: 'participation',
                 validationErrors: []
@@ -84,8 +84,8 @@ exports.showEditParticipationForm = (req, res, next) => {
                 formMode: 'edit',
                 allPoliceOfficers: allPoliceOfficers,
                 allCases: allCases,
-                pageTitle: 'Edycja udziału w sprawie',
-                btnLabel: 'Edytuj udział w sprawie',
+                pageTitle: req.__('participation.form.edit.pageTitle'),
+                btnLabel: req.__('participation.form.edit.btnLabel'),
                 formAction: '/Participation/edit',
                 navLocation: 'participation',
                 validationErrors: []
@@ -114,8 +114,8 @@ exports.addParticipation = (req, res, next) => {
                 formMode: 'createNew',
                 allPoliceOfficers: allPoliceOfficers,
                 allCases: allCases,
-                pageTitle: 'Nowy udział w sprawie',
-                btnLabel: 'Przydziel policjanta do sprawy',
+                pageTitle: req.__('participation.form.add.pageTitle'),
+                btnLabel: req.__('participation.form.add.btnLabel'),
                 formAction: '/Participation/add',
                 navLocation: 'participation',
                 validationErrors: err.errors
@@ -144,8 +144,8 @@ exports.updateParticipation = (req, res, next) => {
                 formMode: 'edit',
                 allPoliceOfficers: allPoliceOfficers,
                 allCases: allCases,
-                pageTitle: 'Edycja udziału w sprawie',
-                btnLabel: 'Edytuj udział w sprawie',
+                pageTitle: req.__('participation.form.edit.pageTitle'),
+                btnLabel: req.__('participation.form.edit.btnLabel'),
                 formAction: '/Participation/add',
                 navLocation: 'participation',
                 validationErrors: err.errors

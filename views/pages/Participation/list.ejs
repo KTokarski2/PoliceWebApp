@@ -1,15 +1,15 @@
 <%- include('../../fragments/header.ejs') %>
 
 <main>
-  <h2>Lista udziału w sprawach</h2>
+  <h2><%= __('participation.list.name')%></h2>
   <table class="table-list">
     <thead>
     <tr>
-      <th>Imię policjanta</th>
-      <th>Nazwisko policjanta</th>
-      <th>Sprawa</th>
+      <th><%= __('participation.list.policeOfficerName')%></th>
+      <th><%= __('participation.list.policeOfficerSurname')%></th>
+      <th><%= __('participation.list.case')%></th>
       <% if (loggedUser) { %>
-        <th>Akcje</th>
+        <th><%= __('participation.list.actions')%></th>
       <% } %>
     </tr>
     </thead>
@@ -33,7 +33,7 @@
     </tbody>
   </table>
   <% if (loggedUser) { %>
-    <p><a class="button-add" href="/Participation/add">Przydziel policjanta do sprawy</a></p>
+    <p><a class="button-add" href="/Participation/add"><%= __('participation.list.button')%></a></p>
   <% } %>
 </main>
 

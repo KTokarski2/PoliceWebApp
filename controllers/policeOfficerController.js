@@ -71,8 +71,8 @@ exports.addPoliceOfficer = (req, res, next) => {
             res.render('pages/PoliceOfficer/form', {
                 policeOfficer: policeOfficerData,
                 formMode: 'createNew',
-                pageTitle: 'Nowy policjant',
-                btnLabel: 'Dodaj policjanta',
+                pageTitle: req.__('policeOfficer.form.add.pageTitle'),
+                btnLabel: req.__('policeOfficer.form.add.btnLabel'),
                 formAction: '/PoliceOfficer/add',
                 navLocation: 'policeOfficer',
                 validationErrors: err.errors
@@ -91,8 +91,8 @@ exports.updatePoliceOfficer = (req, res, next) => {
             res.render('pages/PoliceOfficer/form', {
                 policeOfficer: policeOfficerData,
                 formMode: 'edit',
-                pageTitle: 'Edycja policjanta',
-                btnLabel: 'Edytuj policjanta',
+                pageTitle: req.__('policeOfficer.form.edit.pageTitle'),
+                btnLabel: req.__('policeOfficer.form.edit.btnLabel'),
                 formAction: '/PoliceOfficer/edit',
                 navLocation: 'policeOfficer',
                 validationErrors: err.errors

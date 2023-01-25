@@ -16,11 +16,11 @@ const Case = sequelize.define('Case', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "error.required"
             },
             len: {
                 args: [2,50],
-                msg: "Pole powinno zawierać od 2 do 50 znaków"
+                msg: "error.length"
             },
         }
     },
@@ -30,7 +30,7 @@ const Case = sequelize.define('Case', {
         validate: {
             len: {
                 args: [0, 100],
-                msg: "Pole powinno zawierać od 0 do 100 znaków"
+                msg: "error.length100"
             },
         }
     },
@@ -39,14 +39,14 @@ const Case = sequelize.define('Case', {
         allowNull: false,
         validate: {
             notNull: {
-                msg: "Pole jest wymagane"
+                msg: "error.required"
             },
             isDate: {
-                msg: "Pole powinno być datą"
+                msg: "error.isDate"
             },
             isBefore: {
                 args: gtd(),
-                msg: "Data nie może być z przyszłości"
+                msg: "error.futDate"
             },
 
         }
@@ -57,12 +57,12 @@ const Case = sequelize.define('Case', {
         validate: {
             isBefore: {
                 args: gtd(),
-                msg: "Data nie może być z przyszłości"
+                msg: "error.futDate"
             },
             isAfterStartingDate: function (closingDate) {
                 if (closingDate != null) {
                     if (this.startingDate > endingDate) {
-                        throw new Error("Data zamknięcia musi być późniejsza niż rozpoczęcia");
+                        throw new Error("error.aftDate");
                     }
                 }
             }

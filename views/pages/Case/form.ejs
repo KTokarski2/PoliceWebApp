@@ -10,29 +10,29 @@
         <label for="name"><%= __('case.fields.name')%><span class="symbol-required">*</span></label>
         <input class="<%= validationErrors.find(e => e.path.includes('name')) ? 'error-input' : '' %>" type="text" name="name" id="name" placeholder="2-50 znaków" value="<%= Case.name%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorName" class="errors-text">
-            <% if (validationErrors.find(e => e.path.includes('name'))) { %>
-            <%= validationErrors.find(e => e.path.includes('name')).message %>
+            <% if (validationErrors && validationErrors.find(e => e.path.includes('name'))) { %>
+            <%= __(validationErrors.find(e => e.path.includes('name')).message) %>
             <% } %>
         </span>
         <label for="description"><%= __('case.fields.description')%></label>
         <textarea class="<%= validationErrors.find(e => e.path.includes('description')) ? 'error-input' : '' %>" id="description" name="description" placeholder="0-100 znaków" <%= (formMode == 'showDetails') ? 'disabled' : ''%>><%= Case.description%></textarea>
         <span id="errorDescription" class="errors-text">
-            <% if (validationErrors.find(e => e.path.includes('description'))) { %>
-                <%= validationErrors.find(e => e.path.includes('description')).message %>
+            <% if (validationErrors && validationErrors.find(e => e.path.includes('description'))) { %>
+                <%= __(validationErrors.find(e => e.path.includes('description')).message) %>
             <% } %>
         </span>
         <label for="startingDate"><%= __('case.fields.startingDate')%><span class="symbol-required">*</span></label>
         <input class="<%= validationErrors.find(e => e.path.includes('startingDate')) ? 'error-input' : '' %>" type="date" name="startingDate" id="startingDate" value="<%= fmt.formatDate(Case.startingDate) %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorStartingDate" class="errors-text">
-            <% if (validationErrors.find(e => e.path.includes('startingDate'))) { %>
-                <%= validationErrors.find(e => e.path.includes('startingDate')).message %>
+            <% if (validationErrors && validationErrors.find(e => e.path.includes('startingDate'))) { %>
+                <%= __(validationErrors.find(e => e.path.includes('startingDate')).message) %>
             <% } %>
         </span>
         <label for="closingDate"><%= __('case.fields.endingDate')%></label>
         <input class="<%= validationErrors.find(e => e.path.includes('closingDate')) ? 'error-input' : '' %>" type="date" name="closingDate" id="closingDate" value="<%= fmt.formatDate(Case.closingDate) %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorClosingDate" class="errors-text">
-            <% if (validationErrors.find(e => e.path.includes('closingDate'))) { %>
-                <%= validationErrors.find(e => e.path.includes('closingDate')).message %>
+            <% if (validationErrors && validationErrors.find(e => e.path.includes('closingDate'))) { %>
+                <%= __(validationErrors.find(e => e.path.includes('closingDate')).message) %>
             <% } %>
         </span>
         <% if (formMode != 'showDetails') { %>

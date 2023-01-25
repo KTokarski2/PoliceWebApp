@@ -14,7 +14,7 @@ const Participation = sequelize.define('Participation', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "error.required"
             },
 
 
@@ -25,7 +25,7 @@ const Participation = sequelize.define('Participation', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "error.required"
             }
         }
     },
@@ -34,11 +34,11 @@ const Participation = sequelize.define('Participation', {
         allowNull: false,
         validate: {
             notNull: {
-                msg: "Pole jest wymagane"
+                msg: "error.required"
             },
             isBefore: {
                 args: gtd(),
-                msg: "Data nie może być z przyszłości"
+                msg: "error.futDate"
             },
         }
     },
@@ -48,12 +48,12 @@ const Participation = sequelize.define('Participation', {
         validate: {
             isBefore: {
                 args: gtd(),
-                msg: "Data nie może być z przyszłości"
+                msg: "error.futDate"
             },
             isAfterDate: function (endingDate) {
                 if (endingDate != null) {
                     if (this.startingDate > endingDate) {
-                        throw new Error("Data zamknięcia musi być późniejsza niż rozpoczęcia");
+                        throw new Error("error.aftDate");
                     }
                 }
             }
@@ -64,11 +64,11 @@ const Participation = sequelize.define('Participation', {
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Pole jest wymagane"
+                msg: "error.required"
             },
             len: {
                 args: [0,100],
-                msg: "Pole powinno zawierać od 2 do 100 znaków"
+                msg: "error.length100"
             }
         }
     }

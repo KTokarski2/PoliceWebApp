@@ -73,8 +73,10 @@
 					"header": "Confirmation",
 					"text": "The new police officer has benn successfully updated"
 				}
-			}
-		}
+			},
+			"rankSelect": "-- Choose rank --"
+		},
+		"rankSelect": "policeOfficer.rankSelect"
 	},
 	"case": {
 		"fields": {
@@ -123,7 +125,12 @@
 			"actionTaken": "participation.fields.actionTaken"
 		},
 		"list": {
-			"name": "List of participations"
+			"name": "List of participations",
+			"policeOfficerName": "Name",
+			"policeOfficerSurname": "Lastname",
+			"case": "Case",
+			"actions": "Actions",
+			"button": "Assign police officer to case"
 		},
 		"form": {
 			"add": {
@@ -135,9 +142,28 @@
 				"btnLabel": "Edit"
 			},
 			"details": {
-				"pageTitle": "Details of participation",
-				"btnLabel": "Edit"
-			}
+				"pageTitle": "Details of participation"
+			},
+			"officer": "Officer",
+			"case": "Case",
+			"startingDate": "Starting Date",
+			"endingDate": "Ending Date",
+			"actionTaken": "Action Taken",
+			"officerSelect": "-- Choose officer --",
+			"caseSelect": "-- Choose case --"
 		}
+	},
+	"error": {
+		"required": "Field is required",
+		"length": "Field should have between 2 and 50 characters",
+		"length100": "Field should have between 2 and 100 characters",
+		"password": "Password is required",
+		"rank": "Rank is required",
+		"positive": "Number have to be positive",
+		"numberLength": "Field should have between 4 and 8 numbers",
+		"numeric": "Field have to be numeric",
+		"futDate": "Date cannot be form the future",
+		"aftDate": "This date have to be after previous date",
+		"isDate": "Field have to be date"
 	}
 }

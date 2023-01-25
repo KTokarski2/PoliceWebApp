@@ -65,8 +65,8 @@ exports.addCase = (req, res, next) => {
             res.render('pages/Case/form', {
                 Case: caseData,
                 formMode: 'createNew',
-                pageTitle: 'Nowa sprawa',
-                btnLabel: 'Dodaj sprawę',
+                pageTitle: req.__('case.form.add.pageTitle'),
+                btnLabel: req.__('case.form.add.btnLabel'),
                 formAction: '/Case/add',
                 navLocation: 'case',
                 validationErrors: err.errors
@@ -85,8 +85,8 @@ exports.updateCase = (req, res, next) => {
             res.render('pages/Case/form', {
                 Case: caseData,
                 formMode: 'edit',
-                pageTitle: 'Edycja sprawy',
-                btnLabel: 'Edytuj sprawę',
+                pageTitle: req.__('case.form.edit.pageTitle'),
+                btnLabel: req.__('case.form.edit.btnLabel'),
                 formAction: '/Case/edit',
                 navLocation: 'case',
                 validationErrors: err.errors
