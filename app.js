@@ -40,7 +40,28 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+
+const i18n = require('i18n');
+i18n.configure({
+    locales: ['pl', 'en'],
+    directory: path.join(__dirname, 'locales'),
+    objectNotation: true,
+    cookie: 'ps-lang',
+});
+app.use(i18n.init);
+
+
+
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use((req, res, next) => {
+   if (!res.locals.lang) {
+       const currentLang = req.cookies['ps-lang'];
+       res.locals.lang = currentLang;
+   }
+   next();
+});
 
 const session = require('express-session');
 app.use(session({

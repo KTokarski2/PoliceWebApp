@@ -6,14 +6,14 @@
     <h2><%= pageTitle %></h2>
     <form class="form" method="post" action="<%= formAction %>" novalidate onsubmit="return validateForm(event)">
         <input type="hidden" name="_id" value="<%= policeOfficer._id %>">
-        <label for="firstName">Imię: <span class="symbol-required">*</span></label>
+        <label for="firstName"><%= __('policeOfficer.fields.firstName')%> <span class="symbol-required">*</span></label>
         <input class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>" type="text" name="firstName" id="firstName" placeholder="2-50 znaków" value="<%= policeOfficer.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorFirstName" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('firstName'))) { %>
                 <%= validationErrors.find(e => e.path.includes('firstName')).message %>
             <% } %>
         </span>
-        <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
+        <label for="lastName"><%= __('policeOfficer.fields.lastName')%><span class="symbol-required">*</span></label>
         <input class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : '' %>" type="text" name="lastName" id="lastName" placeholder="2-50 znaków" value="<%= policeOfficer.lastName%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorLastName" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('lastName'))) { %>
@@ -22,19 +22,19 @@
         </span>
 
 
-        <% if (formMode == 'createNew') { %>
-            <label for="password">Hasło <span class="symbol-required">*</span></label>
+
+            <label for="password"><%= __('policeOfficer.fields.password')%> <span class="symbol-required">*</span></label>
             <input class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : '' %>" type="password" name="password" id="password" placeholder="2-50 znaków" value="<%= policeOfficer.password%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
             <span id="errorLastName" class="errors-text">
                 <% if (validationErrors.find(e => e.path.includes('password'))) { %>
                     <%= validationErrors.find(e => e.path.includes('password')).message %>
                 <% } %>
             </span>
-        <% } %>
 
 
 
-        <label for="rank">Stopień: <span class="symbol-required">*</span></label>
+
+        <label for="rank"><%= __('policeOfficer.fields.rank')%><span class="symbol-required">*</span></label>
         <select class="<%= validationErrors.find(e => e.path.includes('rank')) ? 'error-input' : '' %>" name="rank" id="rank" <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
             <% if (formMode != 'createNew') { %>
             <option><%= policeOfficer.rank %></option>
@@ -81,7 +81,7 @@
                 <%= validationErrors.find(e => e.path.includes('rank')).message %>
             <% } %>
         </span>
-        <label for="department">Wydział: <span class="symbol-required">*</span></label>
+        <label for="department"><%= __('policeOfficer.fields.department') %><span class="symbol-required">*</span></label>
         <input class="<%= validationErrors.find(e => e.path.includes('department')) ? 'error-input' : '' %>" type="text" name="department" id="department" placeholder="2-50 znaków" value="<%= policeOfficer.department%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorDepartment" class="errors-text">
             <%if (validationErrors.find(e => e.path.includes('department'))) { %>
@@ -99,26 +99,26 @@
             <div class="form-buttons">
                 <p id="errorsSummary" class="errors-text"></p>
                 <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
-                <a class="form-button-cancel" href="/PoliceOfficer">Anuluj</a>
+                <a class="form-button-cancel" href="/PoliceOfficer"><%= __('form.actions.cancel')%></a>
             </div>
             <% } else { %>
             <div class="form-buttons">
                 <p id="errorsSummary" class="errors-text"></p>
-            <a class="details-button-edit" href="/PoliceOfficer/edit/<%= policeOfficer._id%>">Edytuj</a>
-            <a class="form-button-cancel" href="/PoliceOfficer">Powrót</a>
+            <a class="details-button-edit" href="/PoliceOfficer/edit/<%= policeOfficer._id%>"><%= __('form.actions.edit')%></a>
+            <a class="form-button-cancel" href="/PoliceOfficer"><%= __('form.actions.return')%></a>
             </div>
             <% } %>
 
     </form>
     <% if (formMode == 'showDetails') { %>
-    <h2>Szczegóły uczestnictwa w sprawach</h2>
+    <h2><%= __('policeOfficer.form.participation') %></h2>
     <table class="table-list">
         <thead>
         <tr>
-            <th>Sprawa</th>
-            <th>Data rozpoczęcia</th>
-            <th>Data zakończenia</th>
-            <th>Podjęte działania</th>
+            <th><%= __('case.fields.case') %></th>
+            <th><%= __('participation.fields.startingDate') %></th>
+            <th><%= __('participation.fields.endingDate') %></th>
+            <th><%= __('participation.fields.actionsTaken') %></th>
         </tr>
         </thead>
         <tbody>

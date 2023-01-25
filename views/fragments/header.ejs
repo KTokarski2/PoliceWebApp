@@ -11,36 +11,39 @@
 <body>
 
 <header>
-    <h1>System wspomagający pracę posterunku policji</h1>
+    <h1><%= __('title')%></h1>
     <img src="/images/swppp-logo.png" alt="SWPPP - system logo" width="130" height="100">
 </header>
 
 <nav>
     <ul>
-        <li><a href="/" class="<%= navLocation == 'main' ? 'active' : '' %>">Strona główna</a></li>
-        <li><a href="/PoliceOfficer" class="<%= navLocation == 'policeOfficer' ? 'active' : '' %>">Policjanci</a></li>
-        <li><a href="/Case" class="<%= navLocation == 'case' ? 'active' : ''%>">Sprawy</a></li>
-        <li><a href="/Participation" class="<%= navLocation == 'participation' ? 'active' : '' %>">Uczestnictwo w sprawach</a></li>
+        <li><a href="/" class="<%= navLocation == 'main' ? 'active' : '' %>"><%= __('nav.main-page')%></a></li>
+        <li><a href="/PoliceOfficer" class="<%= navLocation == 'policeOfficer' ? 'active' : '' %>"><%= __('nav.policeOfficers')%></a></li>
+        <li><a href="/Case" class="<%= navLocation == 'case' ? 'active' : ''%>"><%= __('nav.cases')%></a></li>
+        <li><a href="/Participation" class="<%= navLocation == 'participation' ? 'active' : '' %>"><%= __('nav.participation')%></a></li>
+        <li><a href="/changeLang/pl" class="<%= lang == 'pl' ? 'active' : ''%>">PL</a></li>
+        <li><a href="/changeLang/en" class="<%= lang == 'en' ? 'active' : ''%>">EN</a></li>
+
     </ul>
 </nav>
 <% if (!loggedUser) { %>
 
     <div id="login" class="login-div">
-        <h5>Logowanie</h5>
+        <h5><%= __('log.logging')%></h5>
         <form method="post" action="/login" novalidate>
-            <label for="lastName">Nazwisko: </label>
+            <label for="lastName"><%= __('log.lastName') %></label>
             <input type="text" id="loginLastName" name="lastName">
 
-            <label for="loginPassword">Hasło: </label>
+            <label for="loginPassword"><%= __('log.password') %></label>
             <input type="password" id="loginPassword" name="password">
 
-            <input type="submit" class="button-login" value="Zaloguj się">
+            <input type="submit" class="button-login" value="<%= __('log.login') %>">
             <span id="errors-text"><%= loginError ? loginError : ''%></span>
         </form>
     </div>
 <% } else { %>
 
-    <span class="loginInfo">Jesteś zalogowany jako: <%= loggedUser.firstName + " " + loggedUser.lastName%></span>
-    <a class="button-logout" href="/logout">Wyloguj się</a>
+    <span class="loginInfo"><%= __('log.loginInfo')%> <%= loggedUser.firstName + " " + loggedUser.lastName%></span>
+    <a class="button-logout" href="/logout"><%= __('log.logout')%></a>
 
 <% } %>

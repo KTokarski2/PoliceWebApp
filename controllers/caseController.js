@@ -15,9 +15,9 @@ exports.showAddCaseForm = (req, res, next) => {
     //res.render('pages/Case/form', {navLocation: 'case'});
     res.render('pages/Case/form', {
         Case: {},
-        pageTitle: 'Nowa sprawa',
+        pageTitle: req.__('case.form.add.pageTitle'),
         formMode: 'createNew',
-        btnLabel: 'Dodaj sprawę',
+        btnLabel: req.__('case.form.add.btnLabel'),
         formAction: '/Case/add',
         navLocation: 'case',
         validationErrors: []
@@ -31,7 +31,7 @@ exports.showCaseDetails = (req, res, next) => {
             res.render('pages/Case/form', {
                 Case: Case,
                 formMode: 'showDetails',
-                pageTitle: 'Szczegóły sprawy',
+                pageTitle: req.__('case.form.details.pageTitle'),
                 formAction: '',
                 navLocation: 'case',
                 validationErrors: []
@@ -46,8 +46,8 @@ exports.showEditCaseForm = (req, res, next) => {
             res.render('pages/Case/form', {
                 Case: Case,
                 formMode: 'edit',
-                pageTitle: 'Edycja sprawy',
-                btnLabel: 'Edytuj sprawę',
+                pageTitle: req.__('case.form.edit.pageTitle'),
+                btnLabel: req.__('case.form.edit.btnLabel'),
                 formAction: '/Case/edit',
                 navLocation: 'case',
                 validationErrors: []

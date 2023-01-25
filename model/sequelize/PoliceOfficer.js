@@ -42,7 +42,7 @@ const PoliceOfficer = sequelize.define('PoliceOfficer', {
                 msg: "Należy podać hasło"
             },
             len: {
-                args: [2, 50],
+                args: [2, 10000],
                 msg: "Pole powinno zawierać od 2 do 50 znaków"
             }
         }

@@ -1,0 +1,141 @@
+{
+	"title": "System wspomagający pracę posterunku policji",
+	"main-page": {
+		"content": "Strona główna"
+	},
+	"nav": {
+		"main-page": "Strona główna",
+		"policeOfficers": "Policjanci",
+		"cases": "Sprawy",
+		"participation": "Uczestnictwo w sprawach"
+	},
+	"log": {
+		"logging": "Logowanie",
+		"lastName": "Nazwisko",
+		"password": "Hasło",
+		"login": "Zaloguj się",
+		"loginInfo": "Jesteś zalogowany jako: ",
+		"logout": "Wyloguj się"
+	},
+	"list": {
+		"actions": {
+			"title": "Akcje",
+			"details": "Szczegóły",
+			"edit": "Edytuj",
+			"delete": "Usuń"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Powrót",
+			"edit": "Edytuj",
+			"cancel": "Anuluj"
+		}
+	},
+	"policeOfficer": {
+		"fields": {
+			"firstName": "Imię",
+			"lastName": "Nazwisko",
+			"password": "Hasło",
+			"rank": "Stopień",
+			"department": "Wydział",
+			"salary": "Pensja"
+		},
+		"list": {
+			"title": "Lista policjantów",
+			"addNew": "Dodaj nowego policjanta",
+			"noData": "Brak policjantów w bazie",
+			"pageTitle": "Lista policjantów"
+		},
+		"form": {
+			"participation": "Szczegóły uczestnictwa w sprawach",
+			"add": {
+				"pageTitle": "Nowy policjant",
+				"btnLabel": "Dodaj policjanta",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano policjanta"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja policjanta",
+				"btnLabel": "Edytuj",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano policjanta"
+				}
+			},
+			"details": {
+				"pageTitle": "Szczegóły policjanta",
+				"btnLabel": "Edytuj",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new police officer has benn successfully updated"
+				}
+			}
+		}
+	},
+	"case": {
+		"fields": {
+			"case": "Sprawa",
+			"startingDate": "Data rozpoczęcia",
+			"endingDate": "Data zakończenia",
+			"name": "Nazwa",
+			"description": "Opis sprawy",
+			"assignedPoliceOfficers": "Przypisani funkcjonariusze"
+		},
+		"list": {
+			"name": "Lista prowadzonych spraw"
+		},
+		"form": {
+			"add": {
+				"pageTitle": "Nowa sprawa",
+				"btnLabel": "Dodaj sprawę",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano sprawę"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja sprawy",
+				"btnLabel": "Edytuj",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano sprawę"
+				}
+			},
+			"details": {
+				"pageTitle": "Szczegóły sprawy",
+				"btnLabel": "Edytuj",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new police officer has benn successfully updated"
+				}
+			}
+		}
+	},
+	"participation": {
+		"fields": {
+			"startingDate": "Data rozpoczęcia",
+			"endingDate": "Data zakończenia",
+			"actionsTaken": "Podjęte działania"
+		},
+		"list": {
+			"name": "Lista udziału w sprawach"
+		},
+		"form": {
+			"add": {
+				"pageTitle": "Nowy udział w sprawie",
+				"btnLabel": "Przydziel policjanta do sprawy"
+			},
+			"edit": {
+				"pageTitle": "Edytuj udział w sprawie",
+				"btnLabel": "Edytuj"
+			},
+			"details": {
+				"pageTitle": "Szczegóły udziału w sprawie",
+				"btnLabel": "Edytuj"
+			}
+		}
+	}
+}

@@ -7,28 +7,28 @@
     <h2><%= pageTitle %></h2>
     <form class="form" method="post" action="<%= formAction %>" novalidate>
         <input type="hidden" name="_id" value="<%= Case._id %>">
-        <label for="name">Nazwa: <span class="symbol-required">*</span></label>
+        <label for="name"><%= __('case.fields.name')%><span class="symbol-required">*</span></label>
         <input class="<%= validationErrors.find(e => e.path.includes('name')) ? 'error-input' : '' %>" type="text" name="name" id="name" placeholder="2-50 znaków" value="<%= Case.name%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorName" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('name'))) { %>
             <%= validationErrors.find(e => e.path.includes('name')).message %>
             <% } %>
         </span>
-        <label for="description">Opis sprawy: </label>
+        <label for="description"><%= __('case.fields.description')%></label>
         <textarea class="<%= validationErrors.find(e => e.path.includes('description')) ? 'error-input' : '' %>" id="description" name="description" placeholder="0-100 znaków" <%= (formMode == 'showDetails') ? 'disabled' : ''%>><%= Case.description%></textarea>
         <span id="errorDescription" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('description'))) { %>
                 <%= validationErrors.find(e => e.path.includes('description')).message %>
             <% } %>
         </span>
-        <label for="startingDate">Data rozpoczęcia: <span class="symbol-required">*</span></label>
+        <label for="startingDate"><%= __('case.fields.startingDate')%><span class="symbol-required">*</span></label>
         <input class="<%= validationErrors.find(e => e.path.includes('startingDate')) ? 'error-input' : '' %>" type="date" name="startingDate" id="startingDate" value="<%= fmt.formatDate(Case.startingDate) %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorStartingDate" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('startingDate'))) { %>
                 <%= validationErrors.find(e => e.path.includes('startingDate')).message %>
             <% } %>
         </span>
-        <label for="closingDate">Data zamknięcia: </label>
+        <label for="closingDate"><%= __('case.fields.endingDate')%></label>
         <input class="<%= validationErrors.find(e => e.path.includes('closingDate')) ? 'error-input' : '' %>" type="date" name="closingDate" id="closingDate" value="<%= fmt.formatDate(Case.closingDate) %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorClosingDate" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('closingDate'))) { %>
@@ -39,26 +39,26 @@
         <div class="form-buttons">
             <p id="errorsSummary" class="errors-text"></p>
             <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
-            <a class="form-button-cancel" href="/Case">Anuluj</a>
+            <a class="form-button-cancel" href="/Case"><%= __('form.actions.return') %></a>
         </div>
         <% } else {%>
         <div class="form-buttons">
             <p id="errorsSummary" class="errors-text"></p>
-            <a class="details-button-edit" href="/Case/edit/<%= Case._id %>">Edytuj</a>
-            <a class="form-button-cancel" href="/Case">Powrót</a>
+            <a class="details-button-edit" href="/Case/edit/<%= Case._id %>"><%= __('form.actions.edit') %></a>
+            <a class="form-button-cancel" href="/Case"><%= __('form.actions.return') %></a>
         </div>
         <% } %>
     </form>
     <% if (formMode == 'showDetails') { %>
-    <h2>Przypisani funkcjonariusze</h2>
+    <h2><%= ('case.fields.asssignedPoliceOfficers') %></h2>
     <table class="table-list">
         <thead>
         <tr>
-            <th>Imię policjanta</th>
-            <th>Nazwisko policjanta</th>
-            <th>Data rozpoczęcia</th>
-            <th>Data zakończenia</th>
-            <th>Podjęte działania</th>
+            <th><%= __('policeOfficer.fields.firstName') %></th>
+            <th><%= __('policeOfficer.fields.lastName') %></th>
+            <th><%= __('case.fields.startingDate') %></th>
+            <th><%= __('case.fields.endingDate') %></th>
+            <th><%= __('participation.fields.actionTaken')%></th>
         </tr>
         </thead>
         <tbody>

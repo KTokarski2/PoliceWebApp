@@ -1,17 +1,17 @@
 <%- include('../../fragments/header.ejs') %>
 
 <main>
-  <h2>Lista policjantów</h2>
+  <h2><%= __('policeOfficer.list.title')%></h2>
   <table class="table-list">
     <thead>
         <tr>
-            <th>Imię</th>
-            <th>Nazwisko</th>
-            <th>Stopień</th>
-            <th>Wydział</th>
-            <th>Pensja</th>
+            <th><%= __('policeOfficer.fields.firstName') %></th>
+            <th><%= __('policeOfficer.fields.lastName') %></th>
+            <th><%= __('policeOfficer.fields.rank') %>`</th>
+            <th><%= __('policeOfficer.fields.department') %></th>
+            <th><%= __('policeOfficer.fields.salary') %></th>
             <% if (loggedUser) {%>
-                <th>Akcje</th>
+                <th><%= __('list.actions.title') %></th>
             <% } %>
         </tr>
     </thead>
@@ -37,7 +37,7 @@
       </tbody>
   </table>
     <% if (loggedUser) { %>
-        <p><a class="button-add" href="/PoliceOfficer/add">Dodaj nowego policjanta</a></p>
+        <p><a class="button-add" href="/PoliceOfficer/add"><%= __('policeOfficer.list.addNew') %></a></p>
     <% } %>
 </main>
 

@@ -1,0 +1,143 @@
+{
+	"title": "Police station system",
+	"main-page": {
+		"content": "Main page"
+	},
+	"nav": {
+		"main-page": "Main page",
+		"policeOfficers": "Police Officers",
+		"cases": "Cases",
+		"participation": "Participations"
+	},
+	"log": {
+		"logging": "Log in",
+		"lastName": "Last name",
+		"password": "Password",
+		"login": "Log in",
+		"loginInfo": "You are logged as: ",
+		"logout": "Logout"
+	},
+	"list": {
+		"actions": {
+			"title": "Actions",
+			"details": "Details",
+			"edit": "Edit",
+			"delete": "Delete"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Back",
+			"edit": "Edit",
+			"cancel": "Cancel",
+			"back": "form.actions.back"
+		}
+	},
+	"policeOfficer": {
+		"fields": {
+			"firstName": "First name",
+			"lastName": "Last name",
+			"password": "Password",
+			"rank": "Rank",
+			"department": "Department",
+			"salary": "Salary"
+		},
+		"list": {
+			"title": "List of police officers",
+			"addNew": "Add new police officer",
+			"noData": "No police officers in database",
+			"pageTitle": "List of police officers"
+		},
+		"form": {
+			"participation": "Details of participations",
+			"add": {
+				"pageTitle": "New police officer",
+				"btnLabel": "Add police officer",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new police officer has been successfully created"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edit police officer",
+				"btnLabel": "Edit",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new police officer has benn successfully updated"
+				}
+			},
+			"details": {
+				"pageTitle": "Details",
+				"btnLabel": "Edit",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new police officer has benn successfully updated"
+				}
+			}
+		}
+	},
+	"case": {
+		"fields": {
+			"case": "Case",
+			"startingDate": "Starting date",
+			"endingDate": "Ending date",
+			"name": "Name",
+			"description": "Description",
+			"assignedPoliceOfficers": "Assigned police officers"
+		},
+		"list": {
+			"name": "List of cases"
+		},
+		"form": {
+			"add": {
+				"pageTitle": "New case",
+				"btnLabel": "Add case",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new case has been successfully added"
+				}
+			},
+			"edit": {
+				"pageTitle": "Case edit",
+				"btnLabel": "Edit case",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "Case has been successfully updated"
+				}
+			},
+			"details": {
+				"pageTitle": "Case details",
+				"btnLabel": "Edit",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new police officer has benn successfully updated"
+				}
+			}
+		}
+	},
+	"participation": {
+		"fields": {
+			"startingDate": "Starting date",
+			"endingDate": "Ending date",
+			"actionsTaken": "Actions taken",
+			"actionTaken": "participation.fields.actionTaken"
+		},
+		"list": {
+			"name": "List of participations"
+		},
+		"form": {
+			"add": {
+				"pageTitle": "New participation",
+				"btnLabel": "Assign police officer"
+			},
+			"edit": {
+				"pageTitle": "Edit participation",
+				"btnLabel": "Edit"
+			},
+			"details": {
+				"pageTitle": "Details of participation",
+				"btnLabel": "Edit"
+			}
+		}
+	}
+}

@@ -1,14 +1,14 @@
 <%- include('../../fragments/header.ejs') %>
 
 <main>
-  <h2>Lista prowadzonych spraw</h2>
+  <h2><%= __('case.list.name')%></h2>
   <table class="table-list">
     <thead>
     <tr>
-      <th>Nazwa</th>
-      <th>Data rozpoczęcia</th>
+      <th><%= __('case.fields.name')%></th>
+      <th><%= __('case.fields.startingDate')%></th>
       <% if (loggedUser) { %>
-        <th>Akcje</th>
+        <th><%= __('list.actions.title')%></th>
       <% } %>
     </tr>
     </thead>
@@ -31,7 +31,7 @@
     </tbody>
   </table>
   <% if (loggedUser) { %>
-    <p><a class="button-add" href="/Case/add">Dodaj nową sprawę</a></p>
+    <p><a class="button-add" href="/Case/add"><%= __('case.form.add.btnLabel') %></a></p>
   <% } %>
 </main>
 
