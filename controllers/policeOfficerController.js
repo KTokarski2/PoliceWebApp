@@ -83,21 +83,28 @@ exports.addPoliceOfficer = (req, res, next) => {
 exports.updatePoliceOfficer = (req, res, next) => {
     const policeOfficerId = parseInt(req.body._id);
     const policeOfficerData = { ...req.body };
-    PoliceOfficerRepository.updatePoliceOfficer(policeOfficerId, policeOfficerData)
-        .then( result => {
-            res.redirect('/PoliceOfficer');
-        })
-        .catch(err => {
-            res.render('pages/PoliceOfficer/form', {
-                policeOfficer: policeOfficerData,
-                formMode: 'edit',
-                pageTitle: req.__('policeOfficer.form.edit.pageTitle'),
-                btnLabel: req.__('policeOfficer.form.edit.btnLabel'),
-                formAction: '/PoliceOfficer/edit',
-                navLocation: 'policeOfficer',
-                validationErrors: err.errors
+    const loggedUser = req.session.loggedUser;
+
+    if (loggedUser._id == policeOfficerId) {
+
+        PoliceOfficerRepository.updatePoliceOfficer(policeOfficerId, policeOfficerData)
+            .then( result => {
+                res.redirect('/PoliceOfficer');
+            })
+            .catch(err => {
+                res.render('pages/PoliceOfficer/form', {
+                    policeOfficer: policeOfficerData,
+                    formMode: 'edit',
+                    pageTitle: req.__('policeOfficer.form.edit.pageTitle'),
+                    btnLabel: req.__('policeOfficer.form.edit.btnLabel'),
+                    formAction: '/PoliceOfficer/edit',
+                    navLocation: 'policeOfficer',
+                    validationErrors: err.errors
+                });
             });
-        });
+
+    }else res.redirect('/PoliceOfficer');
+
 
 };
 
