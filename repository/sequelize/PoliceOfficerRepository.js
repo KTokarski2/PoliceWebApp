@@ -23,14 +23,16 @@ exports.getPoliceOfficerById = (PoliceOfficer_id) => {
 };
 
 exports.createPoliceOfficer = (newPoliceOfficerData) => {
+
     return PoliceOfficer.create({
         firstName: newPoliceOfficerData.firstName,
         lastName: newPoliceOfficerData.lastName,
-        password: authUtils.hashPassword(newPoliceOfficerData.password),
+        password: authUtils.hashPassword(newPoliceOfficerData.password) == null ? "" : authUtils.hashPassword(newPoliceOfficerData.password),
         rank: newPoliceOfficerData.rank,
         department: newPoliceOfficerData.department,
         salary: newPoliceOfficerData.salary //== "" ? null : newPoliceOfficerData.salary
     });
+
 };
 
 exports.updatePoliceOfficer = (PoliceOfficer_id, PoliceOfficerData) => {

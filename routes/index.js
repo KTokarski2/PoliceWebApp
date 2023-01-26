@@ -12,4 +12,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { navLocation: 'main' });
 });
 
+router.get('/snake', function (req, res, next){
+  res.render('snake',{navLocation: 'main'});
+});
+
 module.exports = router;

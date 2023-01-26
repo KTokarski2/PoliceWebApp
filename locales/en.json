@@ -166,5 +166,8 @@
 		"futDate": "Date cannot be form the future",
 		"aftDate": "This date have to be after previous date",
 		"isDate": "Field have to be date"
+	},
+	"PoliceOfficer": {
+		"password cannot be null": "PoliceOfficer.password cannot be null"
 	}
 }

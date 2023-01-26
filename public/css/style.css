@@ -296,6 +296,11 @@ textarea {
     margin-left: 18px;
 }
 
+.snakeGame {
+    height: 100%;
+    overflow-y: hidden;
+}
+
 @media all and (max-width: 720px) {
 
     body {

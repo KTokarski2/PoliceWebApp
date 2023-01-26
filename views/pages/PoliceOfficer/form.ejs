@@ -6,6 +6,7 @@
     <h2><%= pageTitle %></h2>
     <form class="form" method="post" action="<%= formAction %>" novalidate>
         <input type="hidden" name="_id" value="<%= policeOfficer._id %>">
+
         <label for="firstName"><%= __('policeOfficer.fields.firstName')%> <span class="symbol-required">*</span></label>
         <input class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>" type="text" name="firstName" id="firstName" placeholder="2-50 znaków" value="<%= policeOfficer.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorFirstName" class="errors-text">
@@ -13,6 +14,7 @@
                 <%= __(validationErrors.find(e => e.path.includes('firstName')).message) %>
             <% } %>
         </span>
+
         <label for="lastName"><%= __('policeOfficer.fields.lastName')%><span class="symbol-required">*</span></label>
         <input class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : '' %>" type="text" name="lastName" id="lastName" placeholder="2-50 znaków" value="<%= policeOfficer.lastName%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorLastName" class="errors-text">
@@ -24,8 +26,9 @@
 
 
             <label for="password"><%= __('policeOfficer.fields.password')%> <span class="symbol-required">*</span></label>
-            <input class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : '' %>" type="password" name="password" id="password" placeholder="2-50 znaków" value="<%= policeOfficer.password%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
-            <span id="errorLastName" class="errors-text">
+            <input class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : '' %>" type="password"
+                   name="password" id="password" placeholder="2-50 znaków" value="<%= policeOfficer.password%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+            <span id="errorPassword" class="errors-text">
                 <% if (validationErrors && validationErrors.find(e => e.path.includes('password'))) { %>
                     <%= __(validationErrors.find(e => e.path.includes('password')).message) %>
                 <% } %>
@@ -81,6 +84,7 @@
                 <%= __(validationErrors.find(e => e.path.includes('rank')).message) %>
             <% } %>
         </span>
+
         <label for="department"><%= __('policeOfficer.fields.department') %><span class="symbol-required">*</span></label>
         <input class="<%= validationErrors.find(e => e.path.includes('department')) ? 'error-input' : '' %>" type="text" name="department" id="department" placeholder="2-50 znaków" value="<%= policeOfficer.department%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorDepartment" class="errors-text">
@@ -88,6 +92,7 @@
                 <%= __(validationErrors.find(e => e.path.includes('department')).message) %>
             <% } %>
         </span>
+
         <label for="salary"><%= __('policeOfficer.fields.salary')%><span class="symbol-required">*</span></label>
         <input class="<%= validationErrors.find(e => e.path.includes('salary')) ? 'error-input' : '' %>" type="text" name="salary" id="salary" step="any" placeholder="np. 3000.00 zł" value="<%= isNaN(policeOfficer.salary) ? "" : policeOfficer.salary %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
         <span id="errorSalary" class="errors-text">
@@ -95,6 +100,7 @@
                 <%= __(validationErrors.find(e => e.path.includes('salary')).message) %>
             <% } %>
         </span>
+
             <% if (formMode != 'showDetails') { %>
             <div class="form-buttons">
                 <p id="errorsSummary" class="errors-text"></p>

@@ -41,10 +41,6 @@ const PoliceOfficer = sequelize.define('PoliceOfficer', {
             notEmpty: {
                 msg: "error.password"
             },
-            len: {
-                args: [1, 100],
-                msg: "error.required"
-            }
         }
     },
     rank: {
