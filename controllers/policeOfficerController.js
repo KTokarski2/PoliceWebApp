@@ -46,7 +46,13 @@ exports.showPoliceOfficerDetails = (req, res, next) => {
 
 exports.showEditPoliceOfficerForm = (req, res, next) => {
     //res.render('pages/PoliceOfficer/form', {navLocation: 'policeOfficer'});
+    const loggedUser = req.session.loggedUser;
     const policeOfficerId = parseInt(req.params.policeOfficerId);
+
+    if (policeOfficerId == loggedUser._id) {
+
+    }
+
     PoliceOfficerRepository.getPoliceOfficerById(policeOfficerId)
         .then(policeOfficer => {
             res.render('pages/PoliceOfficer/form', {
@@ -84,9 +90,7 @@ exports.updatePoliceOfficer = (req, res, next) => {
     const policeOfficerId = parseInt(req.body._id);
     const policeOfficerData = { ...req.body };
     const loggedUser = req.session.loggedUser;
-
     if (loggedUser._id == policeOfficerId) {
-
         PoliceOfficerRepository.updatePoliceOfficer(policeOfficerId, policeOfficerData)
             .then( result => {
                 res.redirect('/PoliceOfficer');
