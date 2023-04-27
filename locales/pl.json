@@ -162,5 +162,6 @@
 		"futDate": "Data nie może być z przyszłości",
 		"aftDate": "Data musi następować po poprzedniej dacie",
 		"isDate": "Pole powinno być datą"
-	}
+	},
+	"endingDate is not defined": "endingDate is not defined"
 }
